@@ -16,7 +16,7 @@ This repository contains landmark research papers in Natural Language Processing
 
 7. [A Scalable Hierarchical Distributed Language Model](https://github.com/Akshat4112/NLP-research-papers/blob/master/A%20Scalable%20Hierarchical%20Distributed%20Language%20Model.pdf)
 
-8. [BERT Pre training of Deep Bidirectional Transformers for Language Uderstanding, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/BERT%20Pre%20training%20of%20Deep%20Bidirectional%20Transformers%20for%20Language%20Uderstanding%2C%20Google.pdf)
+8. [BERT Pre training of Deep Bidirectional Transformers for Language Understanding, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/BERT%20Pre%20training%20of%20Deep%20Bidirectional%20Transformers%20for%20Language%20Uderstanding%2C%20Google.pdf)
 
 9. [Language Models are Unsupervised Multitask Learners, OpenAI](https://github.com/Akshat4112/NLP-research-papers/blob/master/Language%20Models%20are%20Unsupervised%20Multitask%20Learners%2C%20openai.pdf)
 
