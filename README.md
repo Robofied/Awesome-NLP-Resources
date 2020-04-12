@@ -2,7 +2,7 @@
 
 This repository contains landmark research papers in Natural Language Processing that came out in this century.
 
-[Efficient Estimation of Word Representations in Vector Space, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space%2C%20Google.pdf)
+[Efficient Estimation of Word Representations in Vector Space, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space%2C%20Google.pdf)<br>
 [Distributed Representations of Words and Phrases, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Distributed%20Representations%20of%20Words%20and%20Phrases%2C%20Google.pdf)
 [Distributed Representations of Sentences and Documents, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Distributed%20Representations%20of%20Sentences%20and%20Documents%2C%20Google.pdf)
 [Enriching Word Vectors with Subword Information, Facebook](https://github.com/Akshat4112/NLP-research-papers/blob/master/Enriching%20Word%20Vectors%20with%20Subword%20Information%2C%20Facebook.pdf)
