@@ -15,6 +15,14 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 
 ### Machine Translation
 * [Understanding Back-Translation at Scale](https://arxiv.org/pdf/1808.09381.pdf)
+* [MUSE: Parallel Multi-Scale Attention for Sequence to Sequence Learning](https://arxiv.org/abs/1911.09483)
+* [Pay Less Attention with Lightweight and Dynamic Convolutions](https://arxiv.org/abs/1901.10430)
+* [Improving Neural Language Modeling via Adversarial Training](http://proceedings.mlr.press/v97/wang19f/wang19f.pdf)
+* [Scaling Neural Machine Translation](https://arxiv.org/abs/1806.00187)
+* [The Best of Both Worlds: Combining Recent Advances in Neural Machine Translation](https://arxiv.org/abs/1804.09849)
+* [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+* [Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer](https://arxiv.org/abs/1701.06538)
+* [Convolutional Sequence to Sequence Learning](https://arxiv.org/abs/1705.03122)
 
 ### Others
 * [Efficient Estimation of Word Representations in Vector Space, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space%2C%20Google.pdf)<br>
