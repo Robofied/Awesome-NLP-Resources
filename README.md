@@ -14,7 +14,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 ## List of Research Papers
 
 ### Machine Translation
-* [Understanding Back-Translation at Scale] (https://arxiv.org/pdf/1808.09381.pdf)
+* [Understanding Back-Translation at Scale](https://arxiv.org/pdf/1808.09381.pdf)
 
 ### Others
 * [Efficient Estimation of Word Representations in Vector Space, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space%2C%20Google.pdf)<br>
