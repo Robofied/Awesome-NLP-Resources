@@ -1,4 +1,4 @@
-# NLP Research Papers
+## NLP Research Papers
 
 This repository contains landmark research papers in Natural Language Processing that came out in this century.
 
@@ -11,6 +11,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Should I Read Papers?](http://michaelrbernste.in/2014/10/21/should-i-read-papers.html)<br>
 * [The Refreshingly Rewarding Realm of Research Papers](https://www.youtube.com/watch?v=8eRx5Wo3xYA)<br>
 
+## List of Research Papers
 [Efficient Estimation of Word Representations in Vector Space, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space%2C%20Google.pdf)<br>
 [Distributed Representations of Words and Phrases, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Distributed%20Representations%20of%20Words%20and%20Phrases%2C%20Google.pdf)<br>
 [Distributed Representations of Sentences and Documents, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Distributed%20Representations%20of%20Sentences%20and%20Documents%2C%20Google.pdf)<br>
