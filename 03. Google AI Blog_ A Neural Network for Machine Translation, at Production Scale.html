@@ -1,0 +1,4776 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html -->
+<html class="v2 detail-page" dir="ltr" itemscope="" itemtype="http://schema.org/Blog" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/3597120983-css_bundle_v2.css" rel="stylesheet" type="text/css">
+<title>
+Google AI Blog: A Neural Network for Machine Translation, at Production Scale
+</title>
+<meta content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, user-scalable=0" name="viewport">
+<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+<meta content="article" property="og:type">
+<meta content="A Neural Network for Machine Translation, at Production Scale" property="og:title">
+<meta content="http://2.bp.blogspot.com/-qRz-hnwUdY4/WulXSQ6Rv4I/AAAAAAAATvQ/shk7KsphA0c3E3nUMsDVASqYaH0PhLPNwCK4BGAYYCw/s1600/GoogleAI_logo_horizontal_color_rgb.png" property="og:image">
+<meta content="en_US" property="og:locale">
+<meta content="http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html" property="og:url">
+<meta content="Google AI Blog" property="og:site_name">
+<!-- Twitter Card properties -->
+<meta content="Google AI Blog" property="twitter:site">
+<meta content="A Neural Network for Machine Translation, at Production Scale" property="twitter:title">
+<meta content="https://1.bp.blogspot.com/-jOLa-LdidQU/V-qV2oJn1aI/AAAAAAAABPg/-6OhKKPhxT89Vs9HhyKMEnyG_0ncWGjJQCLcB/s72-c/image00.png" property="twitter:image">
+<meta content="summary" name="twitter:card">
+<meta content="@googleai" name="twitter:creator">
+<link href="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/css" rel="stylesheet" type="text/css">
+<link href="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/icon" rel="stylesheet">
+<script src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/cb=gapi.loaded_0" async=""></script><script async="" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/analytics.js"></script><script src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/jquery.min.js" type="text/javascript"></script>
+<!-- End -->
+<style id="page-skin-1" type="text/css"><!--
+/*
+<Group description="Header Color" selector="header">
+<Variable name="header.background.color" description="Header Background"
+type="color" default="#ffffff"/>
+</Group>
+*/
+.header-outer {
+border-bottom: 1px solid #e0e0e0;
+background: #ffffff;
+}
+html, .Label h2, #sidebar .rss a, .BlogArchive h2, .FollowByEmail h2.title, .widget .post h2 {
+font-family: Roboto, sans-serif;
+}
+.plusfollowers h2.title, .post h2.title, .widget h2.title {
+font-family: Roboto, sans-serif;
+}
+.widget-item-control {
+height: 100%;
+}
+.widget.Header, #header {
+position: relative;
+height: 100%;
+width: 100%;
+}
+}
+.widget.Header .header-logo1 {
+float: left;
+margin-right: 15px;
+padding-right: 15px;
+border-right: 1px solid #ddd;
+}
+.header-title h1 {
+color: rgba(39, 37, 37, 0.69);
+display: inline-block;
+font-size: 36px;
+font-family: Roboto, sans-serif;
+font-weight: normal;
+line-height: 50px;
+vertical-align: top;
+margin-left: -23px;
+}
+.header-inner {
+background-repeat: no-repeat;
+background-position: right 0px;
+}
+.post-author,
+.byline-author {
+font-size: 14px;
+font-weight: normal;
+color: #757575;
+color: rgba(0,0,0,.54);
+}
+.post-content .img-border {
+border: 1px solid rgb(235, 235, 235);
+padding: 4px;
+}
+.header-title a {
+text-decoration: none !important;
+}
+pre {
+border: 1px solid #bbbbbb;
+margin-top: 1em 0 0 0;
+padding: 0.99em;
+overflow-x: auto;
+overflow-y: auto;
+}
+pre, code {
+font-size: 9pt;
+background-color: #fafafa;
+line-height: 125%;
+font-family: monospace;
+}
+pre, code {
+color: #060;
+font: 13px/1.54 "courier new",courier,monospace;
+}
+.header-left .header-logo1 {
+width: 128px !important;
+}
+.header-desc {
+line-height: 20px;
+margin-top: -22px;
+margin-left: 17px;
+}
+.fb-custom img, .twitter-custom img, .gplus-share img {
+cursor: pointer;
+opacity: 0.54;
+}
+.fb-custom img:hover, .twitter-custom img:hover, .gplus-share img:hover {
+opacity: 0.87;
+}
+.fb-like {
+width: 80px;
+}
+.post .share {
+float: right;
+}
+#twitter-share{
+border: #CCC solid 1px;
+border-radius: 3px;
+background-image: -webkit-linear-gradient(top,#ffffff,#dedede);
+}
+.twitter-follow {
+background: url(//3.bp.blogspot.com/-M7uPAxKEeh4/WKrvV1ujKCI/AAAAAAAATZE/cdHhTldtvk4q4ad1Me1XDIgQD9Aul09CACK4B/s1600/twitter-bird.png) no-repeat left center;
+padding-left: 18px;
+font: normal normal normal 11px/18px 'Helvetica Neue',Arial,sans-serif;
+font-weight: bold;
+text-shadow: 0 1px 0 rgba(255,255,255,.5);
+cursor: pointer;
+margin-bottom: 10px;
+}
+.twitter-fb {
+padding-top: 2px;
+}
+.fb-follow-button  {
+background: -webkit-linear-gradient(#4c69ba, #3b55a0);
+background: -moz-linear-gradient(#4c69ba, #3b55a0);
+background: linear-gradient(#4c69ba, #3b55a0);
+border-radius: 2px;
+height: 18px;
+padding: 4px 0 0 3px;
+width: 57px;
+border: #4c69ba solid 1px;
+}
+.fb-follow-button a {
+text-decoration: none !important;
+text-shadow: 0 -1px 0 #354c8c;
+text-align: center;
+white-space: nowrap;
+font-size: 11px;
+color: white;
+vertical-align: top;
+}
+.fb-follow-button a:visited {
+color: white;
+}
+.fb-follow {
+padding: 0px 5px 3px 0px;
+width: 14px;
+vertical-align: bottom;
+}
+.gplus-wrapper {
+margin-top: 3px;
+display: inline-block;
+vertical-align: top;
+}
+.twitter-custom, .gplus-share {
+margin-right: 12px;
+}
+.fb-follow-button{
+margin: 10px auto;
+}
+sub, sup {
+line-height: 0;
+}
+/** CUSTOM CODE **/
+.post-content td {
+width: inherit;
+}
+--></style>
+<style id="template-skin-1" type="text/css"><!--
+.header-outer {
+clear: both;
+}
+.header-inner {
+margin: auto;
+padding: 0px;
+}
+.footer-outer {
+background: #f5f5f5;
+clear: both;
+margin: 0;
+}
+.footer-inner {
+margin: auto;
+padding: 0px;
+}
+.footer-inner-2 {
+/* Account for right hand column elasticity. */
+max-width: calc(100% - 248px);
+}
+.google-footer-outer {
+clear: both;
+}
+.cols-wrapper, .google-footer-outer, .footer-inner, .header-inner {
+max-width: 978px;
+margin-left: auto;
+margin-right: auto;
+}
+.cols-wrapper {
+margin: auto;
+clear: both;
+margin-top: 60px;
+margin-bottom: 60px;
+overflow: hidden;
+}
+.col-main-wrapper {
+float: left;
+width: 100%;
+}
+.col-main {
+margin-right: 278px;
+max-width: 660px;
+}
+.col-right {
+float: right;
+width: 248px;
+margin-left: -278px;
+}
+/* Tweaks for layout mode. */
+body#layout .google-footer-outer {
+display: none;
+}
+body#layout .header-outer, body#layout .footer-outer {
+background: none;
+}
+body#layout .header-inner {
+height: initial;
+}
+body#layout .cols-wrapper {
+margin-top: initial;
+margin-bottom: initial;
+}
+--></style>
+<!-- start all head -->
+
+<meta content="blogger" name="generator">
+<link href="https://ai.googleblog.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="Google AI Blog - Atom" href="http://ai.googleblog.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Google AI Blog - RSS" href="http://ai.googleblog.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Google AI Blog - Atom" href="https://www.blogger.com/feeds/8474926331452026626/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="Google AI Blog - Atom" href="http://ai.googleblog.com/feeds/3540731201004537522/comments/default">
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/3095134620-ieretrofit.js"></script>
+<![endif]-->
+<link href="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/image00.png" rel="image_src">
+<meta content="http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html" property="og:url">
+<meta content="A Neural Network for Machine Translation, at Production Scale" property="og:title">
+<meta content="Posted by Quoc V. Le &amp; Mike Schuster, Research Scientists, Google Brain Team Ten years ago, we announced the launch of Google Translate , to..." property="og:description">
+<meta content="https://1.bp.blogspot.com/-jOLa-LdidQU/V-qV2oJn1aI/AAAAAAAABPg/-6OhKKPhxT89Vs9HhyKMEnyG_0ncWGjJQCLcB/w1200-h630-p-k-no-nu/image00.png" property="og:image">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<!-- end all head -->
+<!--<base target="_self">--><base href="." target="_self">
+<style>
+      html {
+        font-family: Roboto, sans-serif;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+      }
+      body {
+        padding: 0;
+        /* This ensures that the scroll bar is always present, which is needed */
+        /* because content render happens after page load; otherwise the header */
+        /* would "bounce" in-between states. */
+        min-height: 150%;
+      }
+      h2 {
+        font-size: 16px;
+      }
+      h1, h2, h3, h4, h5 {
+        line-height: 2em;
+      }
+      html, h4, h5, h6 {
+        font-size: 14px;
+      }
+      a, a:visited {
+        color: #4184F3;
+        text-decoration: none;
+      }
+      a:focus, a:hover, a:active {
+        text-decoration: none;
+      }
+      .Header {
+        margin-top: 15px;
+      }
+      /*.Header h1 {
+        font-size: 32px;
+        font-weight: 300;
+        line-height: 32px;
+        height: 42px;
+      }*/
+      .header-inner .Header .titlewrapper {
+        padding: 0;
+        margin-top: 30px;
+      }
+      .header-inner .Header .descriptionwrapper {
+        padding: 0;
+        margin: 0;
+      }
+      .cols-wrapper {
+        margin-top: 56px;
+      }
+      .header-outer, .cols-wrapper, .footer-outer, .google-footer-outer {
+        padding: 0 60px;
+      }
+      .header-inner {
+        height: 256px;
+        position: relative;
+      }
+      html, .header-inner a {
+        color: #212121;
+        color: rgba(0,0,0,.87);
+      }
+      .header-inner .google-logo {
+        display: inline-block;
+        background-size: contain;
+        z-index: 1;
+        height: 100px;
+        overflow: hidden;
+        margin-top: -23px;
+        margin-right: 8px;
+      }
+      .header-left {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        margin-top: 2px;
+        width: 100%;
+        margin-left: -15px;
+      }
+      .google-logo {
+        margin-left: -4px;
+      }
+      .google-logo img{
+        height: 250px;
+    	margin-top: -79px;
+      }
+      #google-footer {
+        position: relative;
+        font-size: 13px;
+        list-style: none;
+        text-align: right;
+      }
+      #google-footer a {
+        color: #444;
+      }
+      #google-footer ul {
+        margin: 0;
+        padding: 0;
+        height: 144px;
+        line-height: 144px;
+      }
+      #google-footer ul li {
+        display: inline;
+      }
+      #google-footer ul li:before {
+        color: #999;
+        content: "\00b7";
+        font-weight: bold;
+        margin: 5px;
+      }
+      #google-footer ul li:first-child:before {
+        content: '';
+      }
+      #google-footer .google-logo-dark {
+        left: 0;
+        margin-top: -16px;
+        position: absolute;
+        top: 50%;
+      }
+      /** Sitemap links. **/
+      .footer-inner-2 {
+        font-size: 14px;
+        padding-top: 42px;
+        padding-bottom: 74px;
+      }
+      .footer-inner-2 .HTML h2 {
+        color: #212121;
+        color: rgba(0,0,0,.87);
+        font-size: 14px;
+        font-weight: 500;
+        padding-left: 0;
+        margin: 10px 0;
+      }
+      .footer-inner-2 .HTML ul {
+        font-weight: normal;
+        list-style: none;
+        padding-left: 0;
+      }
+      .footer-inner-2 .HTML li {
+        line-height: 24px;
+        padding: 0;
+      }
+      .footer-inner-2 li a {
+        color: rgba(65,132,243,.87);
+      }
+      /** Archive widget. **/
+      .BlogArchive {
+        font-size: 13px;
+        font-weight: normal;
+      }
+      .BlogArchive .widget-content {
+        display: none;
+      }
+      .BlogArchive h2, .Label h2 {
+        color: #4184F3;
+        text-decoration: none;
+      }
+      .BlogArchive .hierarchy li {
+        display: inline-block;
+      }
+      /* Specificity needed here to override widget CSS defaults. */
+      .BlogArchive #ArchiveList ul li, .BlogArchive #ArchiveList ul ul li {
+        margin: 0;
+        padding-left: 0;
+        text-indent: 0;
+      }
+      .BlogArchive .intervalToggle {
+        cursor: pointer;
+      }
+      .BlogArchive .expanded .intervalToggle .new-toggle {
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+      .BlogArchive .new-toggle {
+        float: right;
+        padding-top: 3px;
+        opacity: 0.87;
+      }
+      #ArchiveList {
+        text-transform: uppercase;
+      }
+      #ArchiveList .expanded > ul:last-child {
+        margin-bottom: 16px;
+      }
+      #ArchiveList .archivedate {
+        width: 100%;
+      }
+      /* Months */
+      .BlogArchive .items {
+        max-width: 150px;
+        margin-left: -4px;
+      }
+      .BlogArchive .expanded .items {
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+      .BlogArchive .items > ul {
+        float: left;
+        height: 32px;
+      }
+      .BlogArchive .items a {
+        padding: 0 4px;
+      }
+      .Label {
+        font-size: 13px;
+        font-weight: normal;
+      }
+      .sidebar-icon {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        margin-right: 12px;
+        margin-top: -1px
+      }
+      .Label a {
+        margin-right: 4px;
+      }
+      .Label .widget-content {
+        display: none;
+      }
+      .FollowByEmail {
+        font-size: 13px;
+        font-weight: normal;
+      }
+      .FollowByEmail h2 {
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUBJREFUeNrMkSGLAlEUhb+ZB4JFi8mx2cz+ApvhRUGTcUCrNqNJDYIi+DO0GUwmQXDK2DSIoGgZcSaIjDrzwrK4ssvChj1w0733O+fdp+m6PozH4yQSCfb7Pa7r8pOi0SjJZBLP8zgej4gAIMvlMuPxmADIYrHger1+C6lUKmo+NJ/NZojb7SZDWiwWo1qtks1msW2bw+HwZdkwDHq9HvV6nel0SqvVYrvdIh6Ph3Qch+VyqRYLhQJSSjRNw7IsfN9XgGKxSLfbJZfL0e/3aTabrFYr7vc7IujLcOh8PqunrNdr0uk0pVKJVCpFJBJRgEajweVyod1uMxgM2O12BAGUgRbU8DV2JpOhVquRz+cRQii3+XxOp9NRN3jVR5LPOp1OjEYjlSL8hclkgmmabDabt4d+m+S30vkD/R/IU4ABAPTZgnZdmG/PAAAAAElFTkSuQmCC");
+        background-repeat: no-repeat;
+        background-position: 0 50%;
+        text-indent: 30px;
+      }
+      .FollowByEmail .widget-content {
+        display: none;
+      }
+      .searchBox input {
+        border: 1px solid #eee;
+        color: #212121;
+        color: rgba(0,0,0,.87);
+        font-size: 14px;
+        padding: 8px 8px 8px 40px;
+        width: 164px;
+        font-family: Roboto, sans-serif;
+        background: url("https://www.gstatic.com/images/icons/material/system/1x/search_grey600_24dp.png") 8px center no-repeat;
+      }
+      .searchBox ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:    rgba(0,0,0,.54);
+      }
+      .searchBox :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color:    #000;
+        opacity:  0.54;
+      }
+      .searchBox ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color:    #000;
+        opacity:  0.54;
+      }
+      .searchBox :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color:    #757575;
+      }
+      .widget-item-control {
+        margin-top: 0px;
+      }
+      .section {
+        margin: 0;
+        padding: 0;
+      }
+      #sidebar-top {
+        border: 1px solid #eee;
+      }
+      #sidebar-top > div {
+        margin: 16px 0;
+      }
+      .widget ul {
+        line-height: 1.6;
+      }
+      /*main post*/
+      .post {
+		display: inline-block;
+        margin-bottom:30px;
+      }
+      #main .post .title {
+        margin: 0;
+      }
+      #main .post .title a {
+        color: #212121;
+        color: rgba(0,0,0,.87);
+        font-weight: normal;
+        font-size: 24px;
+      }
+      #main .post .title a:hover {
+        text-decoration:none;
+        color:#4184F3;
+      }
+      .message,  #main .post .post-header {
+        margin: 0;
+        padding: 0;
+      }
+      #main .post .post-header .caption, #main .post .post-header .labels-caption,  #main .post .post-footer .caption, #main .post .post-footer .labels-caption {
+        color: #444;
+        font-weight: 500;
+      }
+      #main .tr-caption-container td {
+        text-align: center;
+      }
+      #main .post .tr-caption {
+        color: #757575;
+        color: rgba(0,0,0,.54);
+        display: block;
+        padding-bottom: 20px;
+		line-height: 1.5;
+      }
+      #main .post .tr-caption-container {
+        line-height: 24px;
+        padding: 4px 0;
+        text-align: center;
+      }
+      #main .post .post-header .published{
+        font-size:11px;
+        font-weight:bold;
+      }
+      .post-header .publishdate {
+        font-size: 17px;
+        font-weight:normal;
+        color: #757575;
+        color: rgba(0,0,0,.54);
+      }
+      #main .post .post-footer{
+        font-size:12px;
+        padding-bottom: 21px;
+      }
+      .label-footer {
+        margin-bottom: 12px;
+        margin-top: 12px;
+      }
+      .comment-img {
+        margin-right: 16px;
+        opacity: 0.54;
+        vertical-align: middle;
+      }
+      #main .post .post-header .published {
+        margin-bottom: 10px;
+        margin-top: -2px;
+      }
+      .post .post-content {
+        color: #212121;
+        color: rgba(0,0,0,.87);
+        font-size: 15px;
+        margin: 5px 0 36px 0;
+        line-height: 20px;
+      }
+      .post-body .post-content ul, .post-body .post-content ol {
+        margin: 16px 0;
+        padding: 0 48px;
+      }
+      .post-summary {
+        display: none;
+      }
+      /* Another old-style caption. */
+      .post-content div i, .post-content div + i {
+        font-size: 14px;
+        font-style: normal;
+        color: #757575;
+        color: rgba(0,0,0,.54);
+        display: block;
+        line-height: 24px;
+        margin-bottom: 16px;
+        text-align: left;
+      }
+      /* Another old-style caption (with link) */
+      .post-content a > i {
+        color: #4184F3 !important;
+      }
+      /* Old-style captions for images. */
+      .post-content .separator + div:not(.separator) {
+        margin-top: -16px;
+      }
+      /* Capture section headers. */
+      .post-content br + br + b, .post-content .space + .space + b, .post-content .separator + b {
+        display: inline-block;
+      }
+      /*.post-content li {
+        line-height: 1.5;
+      }*/
+      /* Override all post images/videos to left align. */
+      .post-content .separator, .post-content > div {
+        text-align: center;
+      }
+      .post-content .separator > a, .post-content .separator > span {
+        margin-left: 0 !important;
+      }
+      .post-content img {
+        max-width: 100%;
+        height: auto;
+        width: auto;
+      }
+      .post-content .tr-caption-container img {
+        margin-bottom: 12px;
+      }
+      .post-content iframe, .post-content embed {
+        max-width: 100%;
+      }
+      .post-content .carousel-container {
+        margin-bottom: 48px;
+      }
+      #main .post-content b {
+        font-weight: 500;
+      }
+      /* These are the main paragraph spacing tweaks. */
+      #main .post-content br {
+        /*content: ' ';*/
+        display: block;
+        padding: 4px;
+      }
+      .post-content .space {
+        display: block;
+        height: 8px;
+      }
+      .post-content iframe + .space, .post-content iframe + br {
+        padding: 0 !important;
+      }
+      #main .post .jump-link {
+        margin-bottom:10px;
+      }
+      .post-content img, .post-content iframe {
+        margin: 15px 0 20px 0;
+      }
+      .post-content > img:first-child, .post-content > iframe:first-child {
+        margin-top: 0;
+      }
+      .col-right .section {
+        padding: 0 16px;
+      }
+      #aside {
+        background:#fff;
+        border:1px solid #eee;
+        border-top: 0;
+      }
+      #aside .widget {
+        margin:0;
+      }
+      #aside .widget h2, #ArchiveList .toggle + a.post-count-link {
+        color: #212121;
+        color: rgba(0,0,0,.87);
+        font-weight: 400 !important;
+        margin: 0;
+      }
+      #ArchiveList .toggle {
+        float: right;
+      }
+      #ArchiveList .toggle .material-icons {
+        padding-top: 4px;
+      }
+      #sidebar .tab {
+        cursor: pointer;
+      }
+      #sidebar .tab .arrow {
+        display: inline-block;
+        float: right;
+      }
+      #sidebar .tab .icon {
+        display: inline-block;
+        vertical-align: top;
+        height: 24px;
+        width: 24px;
+        margin-right: 13px;
+        margin-left: -1px;
+        margin-top: 1px;
+        color: #757575;
+        color: rgba(0,0,0,.54);
+      }
+      #sidebar .widget-content > :first-child {
+        padding-top: 8px;
+      }
+      #sidebar .active .tab .arrow {
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+      #sidebar .arrow {
+        color: #757575;
+        color: rgba(0,0,0,.54);
+      }
+      #sidebar .widget h2 {
+        font-size: 14px;
+        line-height: 24px;
+        display: inline-block;
+      }
+      #sidebar .widget .BlogArchive {
+        padding-bottom: 8px;
+      }
+      #sidebar .widget {
+        border-bottom: 1px solid #eee;
+        box-shadow: 0px 1px 0 white;
+        margin-bottom: 0;
+        padding: 14px 0;
+        min-height: 20px;
+      }
+      #sidebar .widget:last-child {
+        border-bottom: none;
+        box-shadow: none;
+        margin-bottom: 0;
+      }
+      #sidebar ul {
+        margin: 0;
+        padding: 0;
+      }
+      #sidebar ul li {
+        list-style:none;
+        padding:0;
+      }
+      #sidebar ul li a {
+        line-height: 32px;
+      }
+      #sidebar .archive {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAYAAADzoH0MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE1JREFUeNpiNDY23s9AAWBioBCwYBM8c+YMVsUmJibEGYBNMS5DaeMFfDYSZQA2v9I3FrB5AZeriI4FmnrBccCT8mhmGs1MwyAzAQQYAKEWG9zm9QFEAAAAAElFTkSuQmCC");
+        height: 24px;
+        line-height: 24px;
+        padding-left: 30px;
+      }
+      #sidebar .labels {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNpiNDY23s9AAMycOfM7UF05kHkZmzwTMkdSUhKrIcXFxZy3bt3qBjIN8RrS09PDsHnzZjCNDr58+cKQlpbGDjSoHcg1w2oIyAUODg5gARCNzUVIBrUCuVYYhjx//pzhwIEDYAEQDeJjA1CDWIAGNQK59jBxRuSABbkAlwHIgIeHh2HWrFn/1NTU2oDcvSgBS4wBSC5iArqoCsj1YGIgEyAZVMoEchqlBjEB/cZAiUHg2AEGznpKDAImxOeM////B4VLKtBvEUCngZ1ILKivr3/u6+ubBzJAGZQ9gC5aQoqLgAY8BhkAZL4BuQQkxgXE34A4BuiiZEIuAhrwEGhAEZD5DpzYoIaA2UAM4kQADUrHZRDUgAIg8wO2XAwzbQXQa5OweQ1owB10AyA6gS7BgX1u3ry5397eHow3bdo0EyjGi00tQIABANPgyAH1q1eaAAAAAElFTkSuQmCC");
+        height: 20px;
+        line-height: 20px;
+        padding-left: 30px;
+      }
+      #sidebar .rss a {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAX5JREFUeNqsVDGSgkAQHL2rIiIikohIc/EBRkbwAIwuwgfwAXiAD9AHSI7kEkECRCb6AIyINDLx7K0aa6kT7uq0q7YYtnZ7umdnt7darXbr9Zpegeu61DNNc0dvwCcH4/GYJpMJnc9nOhwOVJbl/4hAAokMECZJQtvt9k+kH7qufyEYDAakqqqYxFdRFBqNRmTbNg2HQ0rTlK7XayvR0xqBdDqdkuM4dE/0ULhYLOh4PHYrknG5XGi/31MYhuL/nkwonM1mlGUZ1XXdrsiyLGEDhY7juJEZ1u5tIixDGdYhmYw+B7CAzPP5nDabjdgIAgCksMX1832/3drtdqPT6SQWapomiGEFNkDEdpDMMAzK81ys/7XYy+XyoQgq2WoURSIJ2iIIgp/WZCCTvFm2wgeAU31aI3Q2GhIDMeB53qPYPIcm5VrxXIOIOxsDMStjVawAc1VViRgN22lNBiuQN3GR+SY07hpOoStmFQAKXRRFY93bnpG+fONfedi+BRgAbkS8Fxp7QQIAAAAASUVORK5CYII=");
+      }
+      #sidebar .subscription a {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAALCAYAAACZIGYHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUBJREFUeNrMkSGLAlEUhb+ZB4JFi8mx2cz+ApvhRUGTcUCrNqNJDYIi+DO0GUwmQXDK2DSIoGgZcSaIjDrzwrK4ssvChj1w0733O+fdp+m6PozH4yQSCfb7Pa7r8pOi0SjJZBLP8zgej4gAIMvlMuPxmADIYrHger1+C6lUKmo+NJ/NZojb7SZDWiwWo1qtks1msW2bw+HwZdkwDHq9HvV6nel0SqvVYrvdIh6Ph3Qch+VyqRYLhQJSSjRNw7IsfN9XgGKxSLfbJZfL0e/3aTabrFYr7vc7IujLcOh8PqunrNdr0uk0pVKJVCpFJBJRgEajweVyod1uMxgM2O12BAGUgRbU8DV2JpOhVquRz+cRQii3+XxOp9NRN3jVR5LPOp1OjEYjlSL8hclkgmmabDabt4d+m+S30vkD/R/IU4ABAPTZgnZdmG/PAAAAAElFTkSuQmCC");
+      }
+      #sidebar-bottom {
+        background: #f5f5f5;
+        border-top:1px solid #eee;
+      }
+      #sidebar-bottom .widget {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 15px 0;
+        text-align: center;
+      }
+      #sidebar-bottom > div:last-child {
+        border-bottom: 0;
+      }
+      #sidebar-bottom .text {
+        line-height: 20px;
+      }
+      /* Home, forward, and backward pagination. */
+      .blog-pager {
+        border-top : 1px #e0e0e0 solid;
+        padding-top: 10px;
+        margin-top: 15px;
+        text-align: right !important;
+      }
+      #blog-pager {
+        margin-botom: 0;
+        margin-top: -14px;
+        padding: 16px 0 0 0;
+      }
+      #blog-pager a {
+        display: inline-block;
+      }
+      .blog-pager i.disabled {
+        opacity: 0.2 !important;
+      }
+      .blog-pager i {
+        color: black;
+        margin-left: 16px;
+        opacity: 0.54;
+      }
+      .blog-pager i:hover, .blog-pager i:active {
+        opacity: 0.87;
+      }
+      #blog-pager-older-link, #blog-pager-newer-link {
+        float: none;
+      }
+      .gplus-profile {
+        background-color: #fafafa;
+        border: 1px solid #eee;
+        overflow: hidden;
+        width: 212px;
+      }
+      .gplus-profile-inner {
+        margin-left: -1px;
+        margin-top: -1px;
+      }
+      /* Sidebar follow buttons. */
+      .followgooglewrapper {
+        padding: 12px 0 0 0;
+      }
+      .loading {
+        visibility: hidden;
+      }
+      .detail-page .post-footer .cmt_iframe_holder {
+        padding-top: 40px !important;
+      }
+      /** Desktop **/
+      @media (max-width: 900px) {
+        .col-right {
+          display: none;
+        }
+        .col-main {
+          margin-right: 0;
+          min-width: initial;
+        }
+        .footer-outer {
+          display: none;
+        }
+        .cols-wrapper {
+          min-width: initial;
+        }
+        .google-footer-outer {
+          background-color: #f5f5f5;
+        }
+      }
+      /** Tablet **/
+      @media (max-width: 712px) {
+        .header-outer, .cols-wrapper, .footer-outer, .google-footer-outer {
+          padding: 0 40px;
+        }
+      }
+      /* An extra breakpoint accommodating for long blog titles. */
+      @media (max-width: 600px) {
+        .header-left {
+          height: 100%;
+          top: inherit;
+          margin-top: 0;
+          -webkit-transform: initial;
+          transform: initial;
+        }
+        .header-title {
+          margin-top: 88px;
+        }
+        .header-inner .google-logo {
+          height: 40px;
+          margin-top: 3px;
+        }
+        .header-inner .google-logo img {
+          height: 200px;
+        }
+        .header-title h2 {
+          font-size: 32px;
+          line-height: 40px;
+        }
+		.header-title h1{
+          font-size: 32px;
+          line-height: 50px;
+		}
+        .header-desc {
+          bottom: 94px;
+          position: absolute;
+          margin-left: 14px;
+        }
+      }
+      /** Mobile/small desktop window; also landscape. **/
+      @media (max-width: 480px), (max-height: 480px) {
+        .header-outer, .cols-wrapper, .footer-outer, .google-footer-outer {
+          padding: 0 16px;
+        }
+        .cols-wrapper {
+          margin-top: 0;
+        }
+        .post-header .publishdate, .post .post-content {
+          font-size: 16px;
+        }
+        .post .post-content {
+          line-height: 28px;
+          margin-bottom: 30px;
+        }
+        .post {
+          margin-top: 30px;
+        }
+        .byline-author {
+          display: block;
+          font-size: 12px;
+          line-height: 24px;
+          margin-top: 6px;
+        }
+        #main .post .title a {
+          font-weight: 500;
+          color: #4c4c4c;
+          color: rgba(0,0,0,.70);
+        }
+        #main .post .post-header {
+          padding-bottom: 12px;
+        }
+        #main .post .post-header .published {
+          margin-bottom: -8px;
+          margin-top: 3px;
+        }
+        .post .read-more {
+          display: block;
+          margin-top: 14px;
+        }
+        .post .tr-caption {
+          font-size: 12px;
+        }
+        #main .post .title a {
+          font-size: 20px;
+          line-height: 30px;
+        }
+        .post-content iframe {
+          /* iframe won't keep aspect ratio when scaled down. */
+          max-height: 240px;
+        }
+        .post-content .separator img, .post-content .tr-caption-container img, .post-content iframe {
+          max-width: inherit;
+          width: calc(100% + 32px);
+        }
+        /*.post-content table, .post-content td {
+          width: 100%;
+        }*/
+        #blog-pager {
+          margin: 0;
+          padding: 16px 0;
+        }
+        /** List page tweaks. **/
+        .list-page .post-original {
+          display: none;
+        }
+        .list-page .post-summary {
+          display: block;
+        }
+        .list-page .comment-container {
+          display: none;
+        } 
+        .list-page #blog-pager {
+          padding-top: 0;
+          border: 0;
+          margin-top: -8px;
+        }
+        .list-page .label-footer {
+          display: none;
+        }
+        .list-page #main .post .post-footer {
+          border-bottom: 1px solid #eee;
+          margin: -16px 0 0 0;
+          padding: 0 0 20px 0;
+        }
+        .list-page .post .share {
+          display: none;
+        }
+        /** Detail page tweaks. **/
+        .detail-page .post-footer .cmt_iframe_holder {
+          padding-top: 32px !important;
+        }
+        .detail-page .label-footer {
+          margin-bottom: 0;
+        }
+        .detail-page #main .post .post-footer {
+          padding-bottom: 0;
+        }
+        .detail-page #comments {
+          display: none;
+        }
+      }
+      [data-about-pullquote], [data-is-preview], [data-about-syndication] {
+        display: none;
+      }
+    </style>
+<noscript>
+<style>
+        .loading { visibility: visible }</style>
+</noscript>
+<script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-961555-69', 'auto', 'blogger');
+        ga('blogger.send', 'pageview');
+      </script>
+<link href="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/authorization.css" media="all" onload="if(media!=&#39;all&#39;)media=&#39;all&#39;" rel="stylesheet"><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=8474926331452026626&amp;zx=8f73e529-8ecc-498d-bbaa-1223df7cfc31' rel='stylesheet'/></noscript>
+
+</head>
+<body data-gr-c-s-loaded="true">
+<script type="text/javascript">
+      //<![CDATA[
+      var axel = Math.random() + "";
+      var a = axel * 10000000000000;
+      document.write('<iframe src="https://2542116.fls.doubleclick.net/activityi;src=2542116;type=gblog;cat=googl0;ord=ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+      //]]>
+    </script><iframe src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/activityi.html" width="1" height="1" frameborder="0" style="display:none"></iframe>
+<noscript>
+<img alt='' height='1' src='https://ad.doubleclick.net/ddm/activity/src=2542116;type=gblog;cat=googl0;ord=1?' width='1'/>
+</noscript>
+<!-- Header -->
+<div class="header-outer">
+<div class="header-inner">
+<div class="section" id="header"><div class="widget Header" data-version="1" id="Header1">
+<div class="header-left">
+<div class="header-title">
+<a class="google-logo" href="http://ai.googleblog.com/">
+<img height="100" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/GoogleAI_logo_horizontal_color_rgb.png">
+</a>
+<a href="https://ai.googleblog.com/">
+<h1>
+            Blog
+          </h1>
+</a>
+</div>
+<div class="header-desc">
+The latest news from Google AI
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<!-- all content wrapper start -->
+<div class="cols-wrapper">
+<div class="col-main-wrapper">
+<div class="col-main">
+<div class="section" id="main"><div class="widget Blog" data-version="1" id="Blog1">
+<div class="post" data-id="3540731201004537522" itemscope="" itemtype="http://schema.org/BlogPosting">
+<h2 class="title" itemprop="name">
+<a href="http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html" itemprop="url" title="A Neural Network for Machine Translation, at Production Scale">
+A Neural Network for Machine Translation, at Production Scale
+</a>
+</h2>
+<div class="post-header">
+<div class="published">
+<span class="publishdate" itemprop="datePublished">
+Tuesday, September 27, 2016
+</span>
+</div>
+</div>
+<div class="post-body">
+<div class="post-content post-original" itemprop="articleBody">
+                          <span class="byline-author">Posted by Quoc V. Le &amp; Mike Schuster, Research Scientists, Google Brain Team</span><br><br>Ten years ago, we announced the <a href="https://research.googleblog.com/2006/04/statistical-machine-translation-live.html">launch of Google Translate</a>, together with the use of <a href="https://en.wikipedia.org/wiki/Statistical_machine_translation#Phrase-based_translation">Phrase-Based Machine Translation</a> as the key algorithm behind this service. Since then, rapid advances in machine intelligence have improved our <a href="https://research.googleblog.com/2012/08/speech-recognition-and-deep-learning.html">speech recognition</a> and <a href="https://research.googleblog.com/2014/09/building-deeper-understanding-of-images.html">image recognition</a> capabilities, but improving machine translation remains a challenging goal.<br><br>Today we announce the Google Neural Machine Translation system (GNMT), which utilizes state-of-the-art training techniques to achieve the largest improvements to date for machine translation quality. Our full research results are described in a new technical report we are releasing today: “<i><a href="http://arxiv.org/abs/1609.08144">Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</a></i>” [1]. <br><br>A few years ago we started using <a href="https://en.wikipedia.org/wiki/Recurrent_neural_network">Recurrent Neural Networks</a> (RNNs) to directly learn the mapping between an input sequence (e.g. a sentence in one language) to an output sequence (that same sentence in another language) [2]. Whereas Phrase-Based Machine Translation (PBMT) breaks an input sentence into words and phrases to be translated largely independently, Neural Machine Translation (NMT) considers the entire input sentence as a unit for translation.The advantage of this approach is that it requires fewer engineering design choices than previous Phrase-Based translation systems. When it first came out, NMT showed equivalent accuracy with existing Phrase-Based translation systems on modest-sized public benchmark data sets.<br><br>Since then, researchers have proposed many techniques to improve NMT, including work on handling rare words by mimicking an external alignment model [3], using attention to align input words and output words [4] and breaking words into smaller units to cope with rare words [5,6]. Despite these improvements, NMT wasn't fast or accurate enough to be used in a production system, such as Google Translate. Our new paper [1] describes how we overcame the many challenges to make NMT work on very large data sets and built a system that is sufficiently fast and accurate enough to provide better translations for Google’s users and services.<br><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-jOLa-LdidQU/V-qV2oJn1aI/AAAAAAAABPg/-6OhKKPhxT89Vs9HhyKMEnyG_0ncWGjJQCLcB/s1600/image00.png" imageanchor="1" style="margin-left: auto; margin-right: auto;" target="_blank"><img border="0" height="370" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/image00.png" width="640"></a></td></tr><tr><td class="tr-caption" style="text-align: center;">Data from side-by-side evaluations, where human raters compare the quality of translations for a given source sentence. Scores range from 0 to 6, with 0 meaning “completely nonsense translation”, and 6 meaning “perfect translation."</td></tr></tbody></table>The following visualization shows the progression of GNMT as it translates a Chinese sentence to English. First, the network encodes the Chinese words as a list of vectors, where each vector represents the meaning of all words read so far (“Encoder”). Once the entire sentence is read, the decoder begins, generating the English sentence one word at a time (“Decoder”). To generate the translated word at each step, the decoder pays attention to a weighted distribution over the encoded Chinese vectors most relevant to generate the English word (“Attention”; the blue link transparency represents how much the decoder pays attention to an encoded word).<br><div class="separator" style="clear: both; text-align: center;"><a href="https://3.bp.blogspot.com/-3Pbj_dvt0Vo/V-qe-Nl6P5I/AAAAAAAABQc/z0_6WtVWtvARtMk0i9_AtLeyyGyV6AI4wCLcB/s1600/nmt-model-fast.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;" target="_blank"><img border="0" height="324" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/nmt-model-fast.gif" width="640"></a></div>Using human-rated side-by-side comparison as a metric, the GNMT system produces translations that are vastly improved compared to the previous phrase-based production system. GNMT reduces translation errors by more than 55%-85% on several major language pairs measured on sampled sentences from Wikipedia and news websites with the help of bilingual human raters.<br><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://1.bp.blogspot.com/-TAEq5oc14jQ/V-qWTeqaA7I/AAAAAAAABPo/IEmOBO6x7nIkzLqomgk_DwVtzvpEtJF1QCLcB/s1600/img3.png" imageanchor="1" style="margin-left: auto; margin-right: auto;" target="_blank"><img border="0" height="168" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/img3.png" width="640"></a></td></tr><tr><td class="tr-caption" style="text-align: center;">An example of a translation produced by our system for an input sentence sampled from a news site. Go <a href="https://drive.google.com/file/d/0B4-Ig7UAZe3BSUYweVo3eVhNY3c/view?usp=sharing">here</a> for more examples of translations for input sentences sampled randomly from news sites and books.</td></tr></tbody></table>In addition to releasing this research paper today, we are announcing the launch of GNMT in production on a notoriously difficult language pair: Chinese to English. The Google Translate mobile and web apps are now using GNMT for 100% of machine translations from Chinese to English—about 18 million translations per day. The production deployment of GNMT was made possible by use of our publicly available machine learning toolkit <a href="https://www.tensorflow.org/">TensorFlow</a> and our <a href="https://en.wikipedia.org/wiki/Tensor_processing_unit">Tensor Processing Units</a> (TPUs), which provide sufficient computational power to deploy these powerful GNMT models while meeting the stringent latency requirements of the Google Translate product. Translating from Chinese to English is one of the more than 10,000 language pairs supported by Google Translate, and we will be working to roll out GNMT to many more of these over the coming months. <br><br>Machine translation is by no means solved. GNMT can still make significant errors that a human translator would never make, like dropping words and mistranslating proper names or rare terms, and translating sentences in isolation rather than considering the context of the paragraph or page. There is still a lot of work we can do to serve our users better. However, GNMT represents a significant milestone. We would like to celebrate it with the many researchers and engineers—both within Google and the wider community—who have contributed to this direction of research in the past few years. <br><br><b>Acknowledgements:</b><br>We thank members of the <a href="https://g.co/brain">Google Brain team</a> and the <a href="https://translate.google.com/">Google Translate team</a> for the help with the project. We thank Nikhil Thorat and the <a href="https://research.google.com/bigpicture/">Big Picture team</a> for the visualization.<br><br><b>References:</b><br>[1] <a href="http://arxiv.org/abs/1609.08144">Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</a>, <i>Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V. Le, Mohammad Norouzi, Wolfgang Macherey, Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, Jeff Klingner, Apurva Shah, Melvin Johnson, Xiaobing Liu, Łukasz Kaiser, Stephan Gouws, Yoshikiyo Kato, Taku Kudo, Hideto Kazawa, Keith Stevens, George Kurian, Nishant Patil, Wei Wang, Cliff Young, Jason Smith, Jason Riesa, Alex Rudnick, Oriol Vinyals, Greg Corrado, Macduff Hughes, Jeffrey Dean. Technical Report, 2016.</i><br>[2]  <a href="https://arxiv.org/abs/1409.3215">Sequence to Sequence Learning with Neural Networks</a>,<i> Ilya Sutskever, Oriol Vinyals, Quoc V. Le.  Advances in Neural Information Processing Systems, 2014.</i><br>[3] <a href="https://arxiv.org/abs/1410.8206">Addressing the rare word problem in neural machine translation</a>, <i>Minh-Thang Luong, Ilya Sutskever, Quoc V. Le, Oriol Vinyals, and Wojciech Zaremba. Proceedings of the 53th Annual Meeting of the Association for Computational Linguistics, 2015.</i><br>[4] <a href="https://arxiv.org/abs/1409.0473">Neural Machine Translation by Jointly Learning to Align and Translate</a>, <i>Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio. International Conference on Learning Representations, 2015.</i><br>[5] <a href="http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37842.pdf">Japanese and Korean voice search</a>, <i>Mike Schuster, and Kaisuke Nakajima. IEEE International Conference on Acoustics, Speech and Signal Processing, 2012.</i><br>[6] <a href="http://arxiv.org/abs/1508.07909">Neural Machine Translation of Rare Words with Subword Units</a>, <i>Rico Sennrich, Barry Haddow, Alexandra Birch. Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics, 2016.</i><br><br>
+<span itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+  <meta content="https://plus.google.com/116899029375914044550" itemprop="url">
+</span>
+                        </div>
+</div>
+<div class="share">
+<span class="twitter-custom social-wrapper" data-href="http://twitter.com/share?text=Google AI Blog:A Neural Network for Machine Translation, at Production Scale&amp;url=http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html&amp;via=googleai">
+<img alt="Share on Twitter" height="24" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/post_twitter_black_24dp.png" width="24">
+</span>
+<span class="fb-custom social-wrapper" data-href="https://www.facebook.com/sharer.php?u=http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html">
+<img alt="Share on Facebook" height="24" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/post_facebook_black_24dp.png" width="24">
+</span>
+</div>
+</div>
+<div class="blog-pager" id="blog-pager">
+<a class="home-link" href="http://ai.googleblog.com/">
+<i class="material-icons">
+                      
+                    </i>
+</a>
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="http://ai.googleblog.com/2016/09/announcing-youtube-8m-large-and-diverse.html" id="Blog1_blog-pager-newer-link" title="Newer Post">
+<i class="material-icons">
+                          
+                        </i>
+</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://ai.googleblog.com/2016/09/show-and-tell-image-captioning-open.html" id="Blog1_blog-pager-older-link" title="Older Post">
+<i class="material-icons">
+                          
+                        </i>
+</a>
+</span>
+</div>
+<div class="clear"></div>
+</div></div>
+</div>
+</div>
+<div class="col-right">
+<div class="section" id="sidebar-top"><div class="widget HTML" data-version="1" id="HTML8">
+<div class="widget-content">
+<div class="searchBox">
+<input type="text" title="Search This Blog" placeholder="Search blog ...">
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=8474926331452026626&amp;widgetType=HTML&amp;widgetId=HTML8&amp;action=editWidget&amp;sectionId=sidebar-top" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML8&quot;));" rel="nofollow" target="configHTML8" title="Edit">
+<img alt="" height="18" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+<div id="aside">
+<div class="section" id="sidebar"><div class="widget Label" data-version="1" id="Label1">
+<div class="tab">
+<img class="sidebar-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAYpJREFUeNrs2aFuwzAQBmAvKRkMKRjZA4QMDJaWFgyMjuzFRg37DIUlA3uFkoGQSaWzJU+tpri5O9+l/zSfdFJlpe59yTmyVedq1PjfcZMZ70NuQnaF8w8htyE/rABtpviXkLcK88c5HhLkMBfgVan43zfFBNGMjHVGT/s55KP2pAvidbGHd+nzKt1RKSLG3rKF1iPFv6UWiPke8i7kEqGdGsI1O+LYVdqJAjgirwkKYD0ytkJBUNbAMvX8V3q9PhUsYvU1sWD8SO/sQvx2ahxOiNoJCSBCoAHYCEQAC4EKICOQASQEOmAS8RcAFxFN5hiIiugpgC3wk9hQAHH/70EBHXUN7IER5EWMiBgo2+nzOKQv9SCAeEM/OQAkhE/ncccFICB87qzQMia5FsJfOui0zMnmRvipU1ormHQuxGTxUsAcCFLxJQBLBLn4UoAFglW8BkATwS5eC6CBEBWvCShBiIvXBkgQRcVbADiI4uKtABSESvGWgB9EzHt3+tNwyO0qa9SoIYtvAQYAqDJhaWWeMecAAAAASUVORK5CYII=">
+<h2>
+Labels
+</h2>
+<i class="material-icons arrow">
+                      
+                    </i>
+</div>
+<div class="widget-content list-label-widget-content">
+<ul>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/accessibility">
+accessibility
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ACL">
+ACL
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ACM">
+ACM
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Acoustic%20Modeling">
+Acoustic Modeling
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Adaptive%20Data%20Analysis">
+Adaptive Data Analysis
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ads">
+ads
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/adsense">
+adsense
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/adwords">
+adwords
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Africa">
+Africa
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/AI">
+AI
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/AI%20for%20Social%20Good">
+AI for Social Good
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Algorithms">
+Algorithms
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Android">
+Android
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Android%20Wear">
+Android Wear
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/API">
+API
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/App%20Engine">
+App Engine
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/App%20Inventor">
+App Inventor
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/April%20Fools">
+April Fools
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Art">
+Art
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Audio">
+Audio
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Augmented%20Reality">
+Augmented Reality
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Australia">
+Australia
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Automatic%20Speech%20Recognition">
+Automatic Speech Recognition
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/AutoML">
+AutoML
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Awards">
+Awards
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/BigQuery">
+BigQuery
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Cantonese">
+Cantonese
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Chemistry">
+Chemistry
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/China">
+China
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Chrome">
+Chrome
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Cloud%20Computing">
+Cloud Computing
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Collaboration">
+Collaboration
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Compression">
+Compression
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Computational%20Imaging">
+Computational Imaging
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Computational%20Photography">
+Computational Photography
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Computer%20Science">
+Computer Science
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Computer%20Vision">
+Computer Vision
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/conference">
+conference
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/conferences">
+conferences
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Conservation">
+Conservation
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/correlate">
+correlate
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Course%20Builder">
+Course Builder
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/crowd-sourcing">
+crowd-sourcing
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/CVPR">
+CVPR
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Data%20Center">
+Data Center
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Data%20Discovery">
+Data Discovery
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/data%20science">
+data science
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/datasets">
+datasets
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Deep%20Learning">
+Deep Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/DeepDream">
+DeepDream
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/DeepMind">
+DeepMind
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/distributed%20systems">
+distributed systems
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Diversity">
+Diversity
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Earth%20Engine">
+Earth Engine
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/economics">
+economics
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Education">
+Education
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Electronic%20Commerce%20and%20Algorithms">
+Electronic Commerce and Algorithms
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/electronics">
+electronics
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/EMEA">
+EMEA
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/EMNLP">
+EMNLP
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Encryption">
+Encryption
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/entities">
+entities
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Entity%20Salience">
+Entity Salience
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Environment">
+Environment
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Europe">
+Europe
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Exacycle">
+Exacycle
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Expander">
+Expander
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Faculty%20Institute">
+Faculty Institute
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Faculty%20Summit">
+Faculty Summit
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Flu%20Trends">
+Flu Trends
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Fusion%20Tables">
+Fusion Tables
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/gamification">
+gamification
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Gboard">
+Gboard
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Gmail">
+Gmail
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Accelerated%20Science">
+Google Accelerated Science
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Books">
+Google Books
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Brain">
+Google Brain
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Cloud%20Platform">
+Google Cloud Platform
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Docs">
+Google Docs
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Drive">
+Google Drive
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Genomics">
+Google Genomics
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Maps">
+Google Maps
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Photos">
+Google Photos
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Play%20Apps">
+Google Play Apps
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Science%20Fair">
+Google Science Fair
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Sheets">
+Google Sheets
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Translate">
+Google Translate
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Trips">
+Google Trips
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%20Voice%20Search">
+Google Voice Search
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Google%2B">
+Google+
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Government">
+Government
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/grants">
+grants
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Graph">
+Graph
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Graph%20Mining">
+Graph Mining
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Hardware">
+Hardware
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/HCI">
+HCI
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Health">
+Health
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/High%20Dynamic%20Range%20Imaging">
+High Dynamic Range Imaging
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ICCV">
+ICCV
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ICLR">
+ICLR
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ICML">
+ICML
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ICSE">
+ICSE
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Image%20Annotation">
+Image Annotation
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Image%20Classification">
+Image Classification
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Image%20Processing">
+Image Processing
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Inbox">
+Inbox
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/India">
+India
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Information%20Retrieval">
+Information Retrieval
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/internationalization">
+internationalization
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Internet%20of%20Things">
+Internet of Things
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Interspeech">
+Interspeech
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/IPython">
+IPython
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Journalism">
+Journalism
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/jsm">
+jsm
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/jsm2011">
+jsm2011
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/K-12">
+K-12
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Kaggle">
+Kaggle
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/KDD">
+KDD
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Keyboard%20Input">
+Keyboard Input
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Klingon">
+Klingon
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Korean">
+Korean
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Labs">
+Labs
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Linear%20Optimization">
+Linear Optimization
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/localization">
+localization
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Low-Light%20Photography">
+Low-Light Photography
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Machine%20Hearing">
+Machine Hearing
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Machine%20Intelligence">
+Machine Intelligence
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Machine%20Learning">
+Machine Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Machine%20Perception">
+Machine Perception
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Machine%20Translation">
+Machine Translation
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Magenta">
+Magenta
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/MapReduce">
+MapReduce
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/market%20algorithms">
+market algorithms
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Market%20Research">
+Market Research
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Mixed%20Reality">
+Mixed Reality
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ML">
+ML
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ML%20Fairness">
+ML Fairness
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/MOOC">
+MOOC
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Moore%27s%20Law">
+Moore's Law
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Multimodal%20Learning">
+Multimodal Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/NAACL">
+NAACL
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Natural%20Language%20Processing">
+Natural Language Processing
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Natural%20Language%20Understanding">
+Natural Language Understanding
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Network%20Management">
+Network Management
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Networks">
+Networks
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Neural%20Networks">
+Neural Networks
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/NeurIPS">
+NeurIPS
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Nexus">
+Nexus
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Ngram">
+Ngram
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/NIPS">
+NIPS
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/NLP">
+NLP
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/On-device%20Learning">
+On-device Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/open%20source">
+open source
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/operating%20systems">
+operating systems
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Optical%20Character%20Recognition">
+Optical Character Recognition
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/optimization">
+optimization
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/osdi">
+osdi
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/osdi10">
+osdi10
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/patents">
+patents
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Peer%20Review">
+Peer Review
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/ph.d.%20fellowship">
+ph.d. fellowship
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/PhD%20Fellowship">
+PhD Fellowship
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/PhotoScan">
+PhotoScan
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Physics">
+Physics
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/PiLab">
+PiLab
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Pixel">
+Pixel
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Policy">
+Policy
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Professional%20Development">
+Professional Development
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Proposals">
+Proposals
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Public%20Data%20Explorer">
+Public Data Explorer
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/publication">
+publication
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Publications">
+Publications
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Quantum%20AI">
+Quantum AI
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Quantum%20Computing">
+Quantum Computing
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Recommender%20Systems">
+Recommender Systems
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Reinforcement%20Learning">
+Reinforcement Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/renewable%20energy">
+renewable energy
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Research">
+Research
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Research%20Awards">
+Research Awards
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/resource%20optimization">
+resource optimization
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Robotics">
+Robotics
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/schema.org">
+schema.org
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Search">
+Search
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/search%20ads">
+search ads
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Security%20and%20Privacy">
+Security and Privacy
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Self-Supervised%20Learning">
+Self-Supervised Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Semantic%20Models">
+Semantic Models
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Semi-supervised%20Learning">
+Semi-supervised Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/SIGCOMM">
+SIGCOMM
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/SIGMOD">
+SIGMOD
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Site%20Reliability%20Engineering">
+Site Reliability Engineering
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Social%20Networks">
+Social Networks
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Software">
+Software
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Sound%20Search">
+Sound Search
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Speech">
+Speech
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Speech%20Recognition">
+Speech Recognition
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/statistics">
+statistics
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Structured%20Data">
+Structured Data
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Style%20Transfer">
+Style Transfer
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Supervised%20Learning">
+Supervised Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Systems">
+Systems
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/TensorBoard">
+TensorBoard
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/TensorFlow">
+TensorFlow
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/TPU">
+TPU
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Translate">
+Translate
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/trends">
+trends
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/TTS">
+TTS
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/TV">
+TV
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/UI">
+UI
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/University%20Relations">
+University Relations
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/UNIX">
+UNIX
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Unsupervised%20Learning">
+Unsupervised Learning
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/User%20Experience">
+User Experience
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/video">
+video
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Video%20Analysis">
+Video Analysis
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Virtual%20Reality">
+Virtual Reality
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Vision%20Research">
+Vision Research
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Visiting%20Faculty">
+Visiting Faculty
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Visualization">
+Visualization
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/VLDB">
+VLDB
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Voice%20Search">
+Voice Search
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Wiki">
+Wiki
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/wikipedia">
+wikipedia
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/WWW">
+WWW
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/Year%20in%20Review">
+Year in Review
+</a>
+</li>
+<li>
+<a dir="ltr" href="http://ai.googleblog.com/search/label/YouTube">
+YouTube
+</a>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=8474926331452026626&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Label1&quot;));" rel="nofollow" target="configLabel1" title="Edit">
+<img alt="" height="18" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget BlogArchive" data-version="1" id="BlogArchive1">
+<div class="tab">
+<i class="material-icons icon">
+                      
+                    </i>
+<h2>
+Archive
+</h2>
+<i class="material-icons arrow">
+                      
+                    </i>
+</div>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2020/">
+2020
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2020/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2020/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2020/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2020/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2019/">
+2019
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2019/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2018/">
+2018
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2018/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2017/">
+2017
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2017/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy toggle-open">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                      
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2016/">
+2016
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate expanded">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2016/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2015/">
+2015
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2015/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2014/">
+2014
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2014/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2013/">
+2013
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2013/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2012/">
+2012
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2012/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2011/">
+2011
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2011/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2010/">
+2010
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2010/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2009/">
+2009
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/01/">
+Jan
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2009/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2008/">
+2008
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/05/">
+May
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2008/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2007/">
+2007
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2007/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2007/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2007/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2007/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2007/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2007/10/">
+Oct
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="intervalToggle">
+<span class="new-toggle" href="javascript:void(0)">
+<i class="material-icons arrow">
+                    
+                  </i>
+</span>
+<a class="toggle" href="javascript:void(0)" style="display: none">
+<span class="zippy">
+<i class="material-icons">
+                        
+                      </i>
+                      &nbsp;
+                    
+</span>
+</a>
+<a class="post-count-link" href="http://ai.googleblog.com/2006/">
+2006
+</a>
+</div>
+<div class="items"><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/02/">
+Feb
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/03/">
+Mar
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/04/">
+Apr
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/06/">
+Jun
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/07/">
+Jul
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/08/">
+Aug
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/09/">
+Sep
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/11/">
+Nov
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul><ul class="hierarchy">
+<li class="archivedate collapsed">
+<div class="">
+<a class="post-count-link" href="http://ai.googleblog.com/2006/12/">
+Dec
+</a>
+</div>
+<div class="items">
+</div>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=8474926331452026626&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogArchive1&quot;));" rel="nofollow" target="configBlogArchive1" title="Edit">
+<img alt="" height="18" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget HTML" data-version="1" id="HTML6">
+<div class="widget-content">
+<a href="http://googleaiblog.blogspot.com/atom.xml">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAihJREFUeNrsWa9Pw0AU7viRMDFRBAkzJDMIBIhJJhCzk7NILIqMv4AEhdz+BCY3OYssAlGBoAJREpZwAlHEBO8lr8nSvNeVbu1dyX3JlzTrXfa+u/e9d7c5joWFhYVO1Fa8PwH2gK6m+BRwAvSlAdsrgr8E1jUuMH73GTAEzrkBWymTewZlihhLmgDXIAFuHgGVQOUF7OSYM1p6PgTuA1vAZlUEvAnPdapcMY0VICECekQ0XRfYrqoHsAGNgXfAoMomRiFDEhOZkkL3S88hMaB2LwXp0bj+ps2edpToZpjfoIDQtBeU+xjoDzP2G/gCPKZ5f8WsCAFJoJgOCcFdWSTeL9YQMSvTA1h9BkI5jaiXhLpSCL/8mVZY0UpyJ9ZdOkniu1dmJ96BpzQu9w6s28gcOq9j6pwLdR8/36NK5CQKwJSMrb2MhhSglBpt4UjsrdsnNu0B3J0HCozbCc4TjyY2srEgos/4RQljCzNxl4ireQD8FOq+T+W0mTB2g7njhlR+Sy2jsXFvU658U8YTbeaGpdIu7mWkEAq5ZtIjIhFZdtfX7QHckSvB2B6zC3VdAkZk0kAQwaXTk/CzTXK3wjIExCs6ZJpTnE4uY1KV+KzFzA3KTiFPENHJkOPcsfpLhwe4btoSuvUqAR+6TOxlCE6ZfKUsJLgsqGW8OpqAGx2X+sLxrwUog+JUeQRMDBIwyXOcnlPtPnL0/UsT/8LnOxYWFhZG4leAAQAAQHEaYuzHbAAAAABJRU5ErkJggg==" class="sidebar-icon">
+<h2>Feed</h2>
+</a>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=8474926331452026626&amp;widgetType=HTML&amp;widgetId=HTML6&amp;action=editWidget&amp;sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML6&quot;));" rel="nofollow" target="configHTML6" title="Edit">
+<img alt="" height="18" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+<div class="section" id="sidebar-bottom"><div class="widget HTML" data-version="1" id="HTML5">
+<div class="widget-content">
+<div class="share followgooglewrapper">
+<button data-href="https://twitter.com/intent/follow?original_referer=http://ai.googleblog.com/&amp;screen_name=googleai" onclick="sharingPopup(this);" id="twitter-share"><span class="twitter-follow">Follow @googleai</span></button>
+<script>     
+      function sharingPopup (button) {
+      var url = button.getAttribute("data-href");
+	    window.open(
+ url,'popUpWindow','height=500,width=500,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+          }
+    </script>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=8474926331452026626&amp;widgetType=HTML&amp;widgetId=HTML5&amp;action=editWidget&amp;sectionId=sidebar-bottom" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML5&quot;));" rel="nofollow" target="configHTML5" title="Edit">
+<img alt="" height="18" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget HTML" data-version="1" id="HTML1">
+<div class="widget-content">
+Give us feedback in our <a href="http://support.google.com/bin/static.py?hl=en&amp;page=portal_groups.cs">Product Forums</a>.
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=8474926331452026626&amp;widgetType=HTML&amp;widgetId=HTML1&amp;action=editWidget&amp;sectionId=sidebar-bottom" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;HTML1&quot;));" rel="nofollow" target="configHTML1" title="Edit">
+<img alt="" height="18" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</div>
+</div>
+<div style="clear:both;"></div>
+</div>
+<!-- Footer -->
+<div class="google-footer-outer">
+<div id="google-footer">
+<a href="https://www.google.com/">
+<img class="google-logo-dark" height="36" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALgAAABICAYAAABFoT/eAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAACLVJREFUeNrsXd+L20YQ3vOprdLqiMXFXE2qB7dcwEcTSB7ykIc+9A/PQx/yEMq1TWhNuYIpJriNr7XpmZ5IxFEvmW2EKs3Ornb1w50PxIFP0kiz387OzM6uhGAwGAxGP3Ho+f7x7ri1O7LdccPqZjSNA4dEHsLfaHcEFedJom93x9Xu2OyOFTcBo6sED3fHZHeMEELrkAHJF0B8Rr+gDFsZ5n0luLTQ95AXs4W06D/tjpR50xtM4CjD0y48YGB4rnyZxNOzyA7zBHr+nLnDaJLg0mo/ALekCasg3Z4XbM0ZdTEgnDPeHY8bIne+Qz2GvwyGNwsuyT218KWvIIBMcwGpLiipcolecjMxfBDchNyS1EvxLiOSIecp31q6IJ/C3yrIrMqMm4jhg+AxkdwbIO3aUO4KjqqMjCT3uaazMBhWBJfuxH3CtRfiXf66DhSRZWbmlMnNaILgZxrXJQO/eO3wORZwvwm4JUxuhheCjzVBYAbW1ces45YDSoZrFNOEE835M8FT6oyeEnws8Fz3QnBxFKPHBMem4GU+m6fPGb0leCTwWcM5B36MPgeZI01gudyDdw3hPeXfo8L/rmCUWnuMMdqUL2WqWeRbhf+twfVsO7YagZGNC79fw7OthEVtkiJ4jJzTd3KPwf3CRqhhiTu23AP5sl0/0xiwISQXpNwLIJK87mHF+U8ddzzdmgKlGzlPYjyxGJQouIhNT4k9AqWEFkqfguIvagTWbcq3KW1WE3xS3m8NtA9WS451xofwjKT5kkDoK/b6mDk5FfXr1lWDL4BofZEv2/SRsK/EHGlGdBdu8QNRb8HMCFwt7Yy3DDI/QP7fx5z3VLhdlJEIs4rKNuXXJXdxZPdB7kfCzWqwCO4V1LHgLjInX3tQ1KzCR52Cz+vDj1dydeRuS74rcvs2Pi6fT5H8OaaUQPQPYcWwRSGXyhhscn5dpAnEFMkuEZetbfkTAnlSuH4DxisE+aMGeJAQ3lFl7C4LJE6QWCaCd583ORQ1jYAwjFctal7nOs2ZZvicwvlZx+RHGrcoAwKUVX8uwcc/9TT65INeDOr5shL9LDRB6QTeIy3zwfdh3WOi6axLCEhSjXU7F3h6LqggUtvyJxpynwu8tDkD98fXApOxRj8zoZ9MnGveYVIVZKaGrkBXCY65BCYNN9NkjpKOyQ81Q79JgdxS+Jn3SDTEXRI7SWzaiSTB32oI3nU3BvMfM0urhOVYgwKhuiAfc4tM07wXwm1ZRoQYSl2NUwiu01fEAHVcpixd745FvVz4dzUUc0o8rwoLy8ZSwU6CyFx1RP5II9+1bFPEFs9HWbNLiimDXE+vCm7u1CS47cofzD3aEhVY57mxRo5zlqdt+RFC1JUH2S7bcVXg4liTMakaBZZVxiTICRoivcn1sEUBlk24JmaC6kxUbYmWoqvyfck2xZGGnDFYa9MMzkYQ1ijkCX6qidybrgePiQ0QIQqoi6qRLeqQfIoRsEHaQJLBdHOnLGetSdm/IPcymJuS1PAnbQPH0MOw/39C1vL11DiLOqIsbDI8QcHvGiLnySi2qUXBicaqUSxN5LEB0g7Jt3ENXJLPJ5S1tnaZBoWbpRqrmjRE7qHmpSmNHdQcYrEUadoh+TbBnc9ri7iycI1kzPeNcLDIvbiqXpez9Tmdq6zGREPuzECBoxrPMiI2WtvyNwhJba2wy3JZ6ky5dD1lSvmZS3e4SPA1wcf1VTFHKX+cGwZzdUYcqpvUtvwrD/InDttVlyZeAKlNN5MKbAiurHhKIPlUuJvlTCCiDjSKSCsUmCFWbGLZwCESfK07JB8LvMYWVtw0D00JEHV8Mq2HkqPbE0oHLvvK2g0o8ETg+4cfwTlZDT9JDoWygu4uQQE/ivIvtcnfPkaCqhiupz7jWOAzqL/vjtcdkv9G4MVMt+EaylfuImiPAXEUjRF3pjjaHiPPZ6If9TGGAO4ZY0am6jOCb+DQ+ZCqLkIpOIPrdNfIjnFPY6nyFut7TS/fanrziOBOKMupKw94WaLMtuVnSFt9CPrWWdJE6PeltCX432DEBoh+5Dv8RRhdis8YAv9uyq4/JAwtlEApgBe9Cw9xDD3tdk4Jn0MDfiHwPHcRPxBePCMER3GuIx7kGlv9fkZ4V9lolx2Uv4X7hEj7qJ3LDoAMGbTRMRibu4L2xQ8bgt8AyU+Q+x7nYrvDnH4iuO5LxKsYwPVbkPMvKF9Zky9wXzRfVWizi62r9X5VHf55h+WHhDjGBZ4WRhyTr6z5SlCoLMxLSpBZFsQ9F80uQFbF/6aFWi+Ev51vzzsuX+msyzuQXXjUz8zEBy+zpq9yweXAoxJW4JbYrDS6gYDqGHxPl+TKeiBfxj9/EBIElPYeOA4y8/qRQfknjvSzgRgtq0Pw/M1eQeMdOSb2Bnrhr6Led+1vcp2x7oTFHMnedFW+Ivlty062BUt74oHgSj+vHepnhunn0JJAMtBZgDI/qmGtMujRv8DDpo47zBJ8UtPOuAR/7rKn8t9AJ0tBdmBAmJ/Fu71yxp4I3qh+DhyRqbi5Y1ShVPlSb8X7bRNcfgZFl+WRGYo7uecrWq1r8X5bhmzP5OdlDwsGRm1suSxkg5rYm7ConyGQ3Zl+DgSD8V/kPwrWBMG9YcBtyShBnTLdTiHgttw7qAW7cqh/ZnmPKr/6ignOaKsdyxbsToT5UkPsW00bJjijDXficcX/JsLs6w2BwGtherdckH3w/kNXRPVI0OqJQoHX42/66IMfMj/2huRjxIidgKV/W0JS+bsstDoTeAHcrI8E5zTh/sDkqxL5rZup55/3USlswfcHf4IrQplVDgW9XFlOqnwr6pVPMMEZTuC60EttvdzbLbaZ4PsFVa3nohhO+vW+yn/ZB2fUhpysmQrzBcTSai9EszuZMcEZ1lCFVrp9zGXhm69iLyY4oxFIa178lPe12I/P2DAYDAaDwWAwGAwGg8FgMBgMBoPBYDD2Cf8IMADDRGoQTe+E9AAAAABJRU5ErkJggg==" style="margin-top: -16px;" width="92">
+</a>
+<ul>
+<li>
+<a href="https://www.google.com/">
+              Google
+            </a>
+</li>
+<li>
+<a href="https://www.google.com/policies/privacy/">
+              Privacy
+            </a>
+</li>
+<li>
+<a href="https://www.google.com/policies/terms/">
+              Terms
+            </a>
+</li>
+</ul>
+</div>
+</div>
+<script type="text/javascript">
+      //<![CDATA[
+      // Social sharing popups.
+      var postEl = document.getElementsByClassName('social-wrapper');
+      var postCount = postEl.length;
+      for(i=0; i<postCount;i++){
+        postEl[i].addEventListener("click", function(event){
+          var postUrl = this.getAttribute("data-href");
+          window.open(
+            postUrl,'popUpWindow','height=500,width=500,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes');
+        });}
+      //]]>
+    </script>
+<script type="text/javascript">
+      //<![CDATA[
+      var BreakpointHandler = function() {
+        this.initted = false;
+        this.isHomePage = false;
+        this.isMobile = false;
+      };
+      BreakpointHandler.prototype.finalizeSummary = function(summaryHtml, lastNode) {
+        // Use $.trim for IE8 compatibility
+        summaryHtml = $.trim(summaryHtml).replace(/(<br>|\s)+$/,'');
+        if (lastNode.nodeType == 3) {
+          var lastChar = summaryHtml.slice(-1);
+          if (!lastChar.match(/[.”"?]/)) {
+            if (!lastChar.match(/[A-Za-z]/)) {
+              summaryHtml = summaryHtml.slice(0, -1);
+            }
+            summaryHtml += ' ...';
+          }
+        } else if (lastNode.nodeType == 1 && (lastNode.nodeName == 'I' || lastNode.nodeName == 'A')) {
+          summaryHtml += ' ...';
+        }
+        return summaryHtml;
+      };
+      BreakpointHandler.prototype.generateSummaryFromContent = function(content, numWords) {
+        var seenWords = 0;
+        var summaryHtml = '';
+        for (var i=0; i < content.childNodes.length; i++) {
+          var node = content.childNodes[i];
+          var nodeText;
+          if (node.nodeType == 1) {
+            if (node.hasAttribute('data-about-pullquote')) {
+              continue;
+            }
+            nodeText = node.textContent;
+            if (nodeText === undefined) {
+              // innerText for IE8
+              nodeText = node.innerText;
+            }
+            if (node.nodeName == 'DIV' || node.nodeName == 'B') {
+              // Don't end early if we haven't seen enough words.
+              if (seenWords < 10) {
+                continue;
+              }
+              if (i > 0) {
+                summaryHtml = this.finalizeSummary(summaryHtml, content.childNodes[i-1]);
+              }
+              break;
+            }
+            summaryHtml += node.outerHTML;
+          } else if (node.nodeType == 3) {
+            nodeText = node.nodeValue;
+            summaryHtml += nodeText + ' ';
+          }
+          var words = nodeText.match(/\S+\s*/g);
+          if (!words) {
+            continue;
+          }
+          var remain = numWords - seenWords;
+          if (words.length >= remain) {
+            summaryHtml = this.finalizeSummary(summaryHtml, node);
+            break;
+          }
+          seenWords += words.length;
+        }
+        return summaryHtml;
+      };
+      BreakpointHandler.prototype.detect = function() {
+        var match,
+            pl     = /\+/g,
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+        var urlParams = {};
+        while (match = search.exec(query))
+          urlParams[decode(match[1])] = decode(match[2]);
+        this.isListPage = $('html').hasClass('list-page');
+        this.isMobile = urlParams['m'] === '1';
+        this.isHomePage = window.location.pathname == '/';
+      };
+      BreakpointHandler.prototype.initContent = function() {
+        var self = this;
+        $('.post').each(function(index) {
+          var body = $(this).children('.post-body')[0];
+          var content = $(body).children('.post-content')[0];
+          $(content).addClass('post-original');
+          var data = $(content).children('script').html();
+          data = self.rewriteForSSL(data);
+          // If exists, extract specified editor's preview.
+          var match = data.match(/([\s\S]+?)<div data-is-preview.+?>([\s\S]+)<\/div>/m);
+          if (match) {
+            data = match[1];
+          }
+          // Prevent big images from loading when they aren't needed.
+          // This must be done as a pre-injection step, since image loading can't be
+          // canceled once embedded into the DOM.
+          if (self.isListPage && self.isMobile) {
+            data = data.replace(/<(img|iframe) .+?>/g, '');
+          }
+          // Insert template to be rendered as nodes.
+          content.innerHTML = data;
+          if (self.isListPage) {
+            var summary = document.createElement('div');
+            $(summary).addClass('post-content');
+            $(summary).addClass('post-summary');
+            body.insertBefore(summary, content);
+            if (match) {
+              // Use provided summary.
+              summary.innerHTML = match[2];
+            } else {
+              // Generate a summary.
+              // Summary generation relies on DOM, so it must occur after content is
+              // inserted into the page.
+              summary.innerHTML = self.generateSummaryFromContent(content, 30);
+            }
+            // Add read more link to summary.
+            var titleAnchor = $(this).find('.title a')[0];
+            var link = titleAnchor.cloneNode(true);
+            link.innerHTML = 'Read More';
+            $(link).addClass('read-more');
+            summary.appendChild(link);
+          }
+        });
+        // Firefox does not allow for proper styling of BR.
+        if (navigator.userAgent.indexOf('Firefox') > -1) {
+          $('.post-content br').replaceWith('<span class="space"></span>');
+        }
+        $('.loading').removeClass('loading');
+      };
+      BreakpointHandler.prototype.process = function() {
+        if (!this.initted) {
+          var makeInsecureImageRegex = function(hosts) {
+            var whitelist = hosts.join('|').replace(/\./g,'\\.');
+            // Normal image tags, plus input images (yes, this is possible!)
+            return new RegExp('(<(img|input)[^>]+?src=("|\'))http:\/\/(' + whitelist +')', 'g');
+          };
+          this.sslImageRegex = makeInsecureImageRegex(BreakpointHandler.KNOWN_HTTPS_HOSTS);
+          this.sslImageCurrentDomainRegex = makeInsecureImageRegex([window.location.hostname]);
+          this.detect();
+          this.initContent();
+          this.initted = true;
+        }
+      };
+      BreakpointHandler.KNOWN_HTTPS_HOSTS = [
+        "www.google.org",
+        "www.google.com",
+        "services.google.com",
+        "blogger.com",
+        "draft.blogger.com",
+        "www.blogger.com",
+        "photos1.blogger.com",
+        "photos2.blogger.com",
+        "photos3.blogger.com",
+        "blogblog.com",
+        "img1.blogblog.com",
+        "img2.blogblog.com",
+        "www.blogblog.com",
+        "www1.blogblog.com",
+        "www2.blogblog.com",
+        "0.bp.blogspot.com",
+        "1.bp.blogspot.com",
+        "2.bp.blogspot.com",
+        "3.bp.blogspot.com",
+        "4.bp.blogspot.com",
+        "lh3.googleusercontent.com",
+        "lh4.googleusercontent.com",
+        "lh5.googleusercontent.com",
+        "lh6.googleusercontent.com",
+        "themes.googleusercontent.com",
+      ];
+        BreakpointHandler.prototype.rewriteForSSL = function(html) {
+        // Handle HTTP -> HTTPS source replacement of images, movies, and other embedded content.
+        return html.replace(this.sslImageRegex, '$1https://$4')
+        .replace(this.sslImageCurrentDomainRegex, '$1//$4')
+        .replace(/(<(embed|iframe)[^>]+?src=("|'))http:\/\/([^"']*?(youtube|picasaweb\.google)\.com)/g, '$1https://$4')
+        // Slideshow SWF takes a image host, so we need to rewrite that parameter.
+        .replace(/(<embed[^>]+?feed=http(?=[^s]))/g, '$1s');
+        };
+        $(document).ready(function() {
+        var handler = new BreakpointHandler();
+        handler.process();
+        // Top-level navigation.
+        $(".BlogArchive .tab").click(function(ev) {
+        ev.preventDefault();
+        $(this).parent().toggleClass('active');
+        $(this).siblings().slideToggle(300);
+        });
+        $(".Label .tab").click(function(ev) {
+        ev.preventDefault();
+        $(this).parent().toggleClass('active');
+        $(this).siblings().slideToggle(300);
+        });
+        // Blog archive year expansion.
+        $('.BlogArchive .intervalToggle').click(function(ev) {
+        ev.preventDefault();
+        if ($(this).parent().hasClass('collapsed')) {
+        $(this).parent().removeClass('collapsed');
+        $(this).parent().addClass('expanded');
+        } else {
+        $(this).parent().removeClass('expanded');
+        $(this).parent().addClass('collapsed');
+        }
+        });
+        // Reverse order of months.
+        $('.BlogArchive .intervalToggle + div').each(function(_, items) {
+        var year = $(this);
+        year.children().each(function(_, month) {
+        year.prepend(month);
+        });
+        });
+        // Set anchors to open in new tab.
+        $('.post-content img').parent().each(function(_, node) {
+        if (node.nodeName == 'A') {
+        $(this).attr('target', '_blank');
+        }
+        });
+        // Process search requests.
+        $('.searchBox input').on("keypress", function(ev) {
+        if (ev.which == 13) {
+        window.location.href = 'https://www.google.com/search?q=site%3A' + window.location.hostname + '%20' + encodeURIComponent ($(this).val());
+        }
+        });
+        });
+        //]]>
+    </script>
+<link href="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/prettify.min.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/prettify.min.js" type="text/javascript"></script>
+<script language="javascript" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/lang-css.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+        document.addEventListener('DOMContentLoaded',function() {
+            prettyPrint();
+        });
+    </script>
+<script src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/plusone.js" type="text/javascript" gapi_processed="true"></script>
+
+<script type="text/javascript" src="./03. Google AI Blog_ A Neural Network for Machine Translation, at Production Scale_files/2053445127-widgets.js"></script>
+<script type="text/javascript">
+window['__wavt'] = 'AOuZoY5tr6tXnYbYsYS5-TyEzGvwj-ArXQ:1587463391569';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d8474926331452026626','//ai.googleblog.com/2016/09/a-neural-network-for-machine.html','8474926331452026626');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '8474926331452026626', 'title': 'Google AI Blog', 'url': 'http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html', 'canonicalUrl': 'http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html', 'homepageUrl': 'http://ai.googleblog.com/', 'searchUrl': 'http://ai.googleblog.com/search', 'canonicalHomepageUrl': 'http://ai.googleblog.com/', 'blogspotFaviconUrl': 'http://ai.googleblog.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': true, 'httpsEnabled': false, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': 'UA-961555-69', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Google AI Blog - Atom\x22 href\x3d\x22http://ai.googleblog.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Google AI Blog - RSS\x22 href\x3d\x22http://ai.googleblog.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Google AI Blog - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/8474926331452026626/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Google AI Blog - Atom\x22 href\x3d\x22http://ai.googleblog.com/feeds/3540731201004537522/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/3095134620-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/37c3af6e1a1995af', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'disableGComments': true, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '3540731201004537522', 'postImageThumbnailUrl': 'https://1.bp.blogspot.com/-jOLa-LdidQU/V-qV2oJn1aI/AAAAAAAABPg/-6OhKKPhxT89Vs9HhyKMEnyG_0ncWGjJQCLcB/s72-c/image00.png', 'postImageUrl': 'https://1.bp.blogspot.com/-jOLa-LdidQU/V-qV2oJn1aI/AAAAAAAABPg/-6OhKKPhxT89Vs9HhyKMEnyG_0ncWGjJQCLcB/s640/image00.png', 'pageName': 'A Neural Network for Machine Translation, at Production Scale', 'pageTitle': 'Google AI Blog: A Neural Network for Machine Translation, at Production Scale'}}, {'name': 'features', 'data': {'sharing_get_link_dialog': 'true', 'sharing_native': 'false'}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'A Neural Network for Machine Translation, at Production Scale', 'description': 'Posted by Quoc V. Le \x26 Mike Schuster, Research Scientists, Google Brain Team Ten years ago, we announced the launch of Google Translate , to...', 'featuredImage': 'https://1.bp.blogspot.com/-jOLa-LdidQU/V-qV2oJn1aI/AAAAAAAABPg/-6OhKKPhxT89Vs9HhyKMEnyG_0ncWGjJQCLcB/s640/image00.png', 'url': 'http://ai.googleblog.com/2016/09/a-neural-network-for-machine.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 3540731201004537522}}]);
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'legacyCommentModerationUrl': 'https://www.blogger.com/moderate-legacy-comment.g?blogID\x3d8474926331452026626', 'iframeCommentsId': 'gpluscomments', 'viewType': 'FILTERED_POSTMOD'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML8', 'sidebar-top', document.getElementById('HTML8'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar', document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML6', 'sidebar', document.getElementById('HTML6'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML5', 'sidebar-bottom', document.getElementById('HTML5'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebar-bottom', document.getElementById('HTML1'), {}, 'displayModeFull'));
+</script>
+
+<div id="fatkun-drop-panel">
+        <a id="fatkun-drop-panel-close-btn">×</a>
+            <div id="fatkun-drop-panel-inner">
+                <div class="fatkun-content">
+                    <svg class="fatkun-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5892"><path d="M494.933333 782.933333c2.133333 2.133333 4.266667 4.266667 8.533334 6.4h8.533333c6.4 0 10.666667-2.133333 14.933333-6.4l2.133334-2.133333 275.2-275.2c8.533333-8.533333 8.533333-21.333333 0-29.866667-8.533333-8.533333-21.333333-8.533333-29.866667 0L533.333333 716.8V128c0-12.8-8.533333-21.333333-21.333333-21.333333s-21.333333 8.533333-21.333333 21.333333v588.8L249.6 475.733333c-8.533333-8.533333-21.333333-8.533333-29.866667 0-8.533333 8.533333-8.533333 21.333333 0 29.866667l275.2 277.333333zM853.333333 874.666667H172.8c-12.8 0-21.333333 8.533333-21.333333 21.333333s8.533333 21.333333 21.333333 21.333333H853.333333c12.8 0 21.333333-8.533333 21.333334-21.333333s-10.666667-21.333333-21.333334-21.333333z" p-id="5893"></path></svg>
+                    <div class="fatkun-title">Drag and Drop</div>
+                    <div class="fatkun-desc">The image will be downloaded</div>
+                </div>
+            </div>
+    </div></body></html>
