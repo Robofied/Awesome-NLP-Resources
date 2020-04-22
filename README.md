@@ -14,7 +14,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 ## List of Research Papers
 
 ### :point_right: Machine Translation
-* [Understanding Back-Translation at Scale](https://arxiv.org/pdf/1808.09381.pdf)
+:star: [Understanding Back-Translation at Scale](https://arxiv.org/pdf/1808.09381.pdf)
 * [MUSE: Parallel Multi-Scale Attention for Sequence to Sequence Learning](https://arxiv.org/abs/1911.09483)
 * [Pay Less Attention with Lightweight and Dynamic Convolutions](https://arxiv.org/abs/1901.10430)
 * [Improving Neural Language Modeling via Adversarial Training](http://proceedings.mlr.press/v97/wang19f/wang19f.pdf)
