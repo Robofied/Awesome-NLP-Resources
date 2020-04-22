@@ -38,3 +38,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Language Models are Unsupervised Multitask Learners, OpenAI](https://github.com/Akshat4112/NLP-research-papers/blob/master/Language%20Models%20are%20Unsupervised%20Multitask%20Learners%2C%20openai.pdf)<br>
 * [Wav2Letter, Facebook](https://github.com/Akshat4112/NLP-research-papers/blob/master/Wav2Letter%2C%20Facebook.pdf)<br>
 * [Misspelling Oblivious Word Embeddings, Facebook](https://github.com/Akshat4112/NLP-research-papers/blob/master/Misspelling%20Oblivious%20Word%20Embeddings%2C%20Facebook.pdf)<br>
+
+## Credits
+* :man: [Akshat Gupta](https://github.com/Akshat4112/)
+* :woman: [Ridhima Garg](https://github.com/ridhimagarg)
