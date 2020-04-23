@@ -18,6 +18,8 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * Encoder Decoder Models
   * [Sequence to Sequence Learning with Neural Network](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf)
   * [Learning Phase Representations using RNN Encoder-Decoder for statistical Machine Translation](https://arxiv.org/pdf/1406.1078.pdf)
+  * [Google Machine Translation Blog](https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html)
+  * [Attention Model(Neural Machine Translation By Jointly learning to Align and Translate)](https://arxiv.org/pdf/1409.0473.pdf)
   * [Understanding Back-Translation at Scale](https://arxiv.org/pdf/1808.09381.pdf)
   * [MUSE: Parallel Multi-Scale Attention for Sequence to Sequence Learning](https://arxiv.org/abs/1911.09483)
   * [Pay Less Attention with Lightweight and Dynamic Convolutions](https://arxiv.org/abs/1901.10430)
