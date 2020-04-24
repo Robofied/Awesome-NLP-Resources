@@ -1,8 +1,8 @@
 ## NLP Research Papers
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Akshat4112/Awesome-NLP-Resources/graphs/commit-activity)  
-[![GitHub contributors](https://img.shields.io/github/contributors/Nareem/StrapDown.js.svg)](https://github.com/Akshat4112/Awesome-NLP-Resources/graphs/contributors) 
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Akshat4112/Awesome-NLP-Resources/graphs/commit-activity)  [![GitHub contributors](https://img.shields.io/github/contributors/Nareem/StrapDown.js.svg)](https://github.com/Akshat4112/Awesome-NLP-Resources/graphs/contributors) 
+[![MIT license]
+(https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 This repository contains landmark research papers in Natural Language Processing that came out in this century.
 
