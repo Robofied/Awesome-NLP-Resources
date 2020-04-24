@@ -32,6 +32,8 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 ### :point_right: Image to Text
 
 * [Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf)
+* [Image Captioning Using Keras(Blog)](https://towardsdatascience.com/image-captioning-with-keras-teaching-computers-to-describe-pictures-c88a46a311b8)
+* [Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/cvpr2015.pdf)
 
 
 ### Others
@@ -39,6 +41,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Pay Less Attention with Lightweight and Dynamic Convolutions](https://arxiv.org/abs/1901.10430)
 * [Improving Neural Language Modeling via Adversarial Training](http://proceedings.mlr.press/v97/wang19f/wang19f.pdf)
 * [Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer](https://arxiv.org/abs/1701.06538)
+
 
 * [Efficient Estimation of Word Representations in Vector Space, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Efficient%20Estimation%20of%20Word%20Representations%20in%20Vector%20Space%2C%20Google.pdf)<br>
 * [Distributed Representations of Words and Phrases, Google](https://github.com/Akshat4112/NLP-research-papers/blob/master/Distributed%20Representations%20of%20Words%20and%20Phrases%2C%20Google.pdf)<br>
