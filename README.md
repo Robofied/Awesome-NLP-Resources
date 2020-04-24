@@ -1,5 +1,7 @@
 ## NLP Research Papers
 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)  [![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/contributors/) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+
 This repository contains landmark research papers in Natural Language Processing that came out in this century.
 
 ## How to Read a Paper?
@@ -13,7 +15,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 
 ## List of Research Papers
 
-### :point_right: Machine Translation
+### :point_right: Machine Translation 
 
 * [Sequence to Sequence Learning with Neural Network](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf)
 * [Learning Phase Representations using RNN Encoder-Decoder for statistical Machine Translation](https://arxiv.org/pdf/1406.1078.pdf)
