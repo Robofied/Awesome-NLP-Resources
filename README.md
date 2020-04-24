@@ -4,7 +4,7 @@
 
 This repository contains landmark research papers in Natural Language Processing that came out in this century.
 
-## How to Read a Paper?
+## How to Read a Paper? :page_with_curl:
 Reading a paper is not the same as reading a blogpost or a novel. Here are a few handy resources to help you get started.
 
 * [How to read an academic article](https://organizationsandmarkets.com/2010/08/31/how-to-read-an-academic-article/)<br>
