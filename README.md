@@ -13,7 +13,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Should I Read Papers?](http://michaelrbernste.in/2014/10/21/should-i-read-papers.html)<br>
 * [The Refreshingly Rewarding Realm of Research Papers](https://www.youtube.com/watch?v=8eRx5Wo3xYA)<br>
 
-## List of Research Papers
+## List of Research Papers/ Resources(Blogs)
 
 ### :point_right: Machine Translation 
 
@@ -27,6 +27,12 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [The Best of Both Worlds: Combining Recent Advances in Neural Machine Translation](https://arxiv.org/abs/1804.09849)
 * [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 * [Convolutional Sequence to Sequence Learning](https://arxiv.org/abs/1705.03122)
+
+
+### :point_right: Image to Text
+
+* [Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf)
+
 
 ### Others
 
