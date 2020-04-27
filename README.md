@@ -63,7 +63,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [The Illustrated BERT](http://jalammar.github.io/illustrated-bert/) 
 * [A Visual Guide to Using BERT for the First Time](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/)
 
-### Back to Top[#Contents]
+### [Back to Top](#Contents)
 
 ### Others
 
