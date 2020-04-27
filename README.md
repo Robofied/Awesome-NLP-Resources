@@ -7,7 +7,7 @@ This repository contains landmark research papers and blogs in Natural Language 
 
 ## Contents
 
-* [How to Read a Paper?](readme.md#HowtoReadaPaper?)
+* [How to Read a Paper?](#How-to-Read-a-Paper?)
 
 
 ## How to Read a Paper? :page_with_curl:
