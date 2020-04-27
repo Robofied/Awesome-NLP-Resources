@@ -36,7 +36,11 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 
 
 ## List of blogs
+
+### :point_right: Machine Translation
 * [Google Machine Translation Blog](https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html)
+
+### :point_right: Image to Text
 * [Image Captioning Using Keras](https://towardsdatascience.com/image-captioning-with-keras-teaching-computers-to-describe-pictures-c88a46a311b8)
 
 
