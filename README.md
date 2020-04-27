@@ -43,6 +43,9 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 
 ### :point_right: Machine Translation
 * [Google Machine Translation Blog](https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html)
+* [Email AutoReply and Auto Suggestion](https://ai.googleblog.com/2018/05/smart-compose-using-neural-networks-to.html)
+* [Find Code errors and repair](https://medium.com/@martin.monperrus/sequence-to-sequence-learning-program-repair-e39dc5c0119b)
+
 
 
 ### :point_right: Image to Text
