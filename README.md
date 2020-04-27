@@ -3,7 +3,12 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Akshat4112/Awesome-NLP-Resources/graphs/commit-activity)  [![GitHub contributors](https://img.shields.io/github/contributors/Nareem/StrapDown.js.svg)](https://github.com/Akshat4112/Awesome-NLP-Resources/graphs/contributors) [![MIT license]
 (https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
-This repository contains landmark research papers in Natural Language Processing that came out in this century.
+This repository contains landmark research papers and blogs in Natural Language Processing that came out in this century.
+
+## Contents
+
+* [How to Read a Paper?](readme.md#HowtoReadaPaper?)
+
 
 ## How to Read a Paper? :page_with_curl:
 Reading a paper is not the same as reading a blogpost or a novel. Here are a few handy resources to help you get started.
