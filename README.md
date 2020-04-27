@@ -8,7 +8,7 @@ This repository contains landmark research papers and blogs in Natural Language 
 ## Contents
 
 * [How to Read a Paper?](#How-to-Read-a-Paper?)
-
+* [List of blogs](#List-of-blogs)
 
 ## How to Read a Paper? :page_with_curl:
 Reading a paper is not the same as reading a blogpost or a novel. Here are a few handy resources to help you get started.
