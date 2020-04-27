@@ -13,13 +13,12 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Should I Read Papers?](http://michaelrbernste.in/2014/10/21/should-i-read-papers.html)<br>
 * [The Refreshingly Rewarding Realm of Research Papers](https://www.youtube.com/watch?v=8eRx5Wo3xYA)<br>
 
-## List of Research Papers/ Resources(Blogs)
+## List of Research Papers
 
 ### :point_right: Machine Translation 
 
 * [Sequence to Sequence Learning with Neural Network](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf)
 * [Learning Phase Representations using RNN Encoder-Decoder for statistical Machine Translation](https://arxiv.org/pdf/1406.1078.pdf)
-* [Google Machine Translation Blog](https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html)
 * [Attention Model(Neural Machine Translation By Jointly learning to Align and Translate)](https://arxiv.org/pdf/1409.0473.pdf)
 * [Understanding Back-Translation at Scale](https://arxiv.org/pdf/1808.09381.pdf)
 * [MUSE: Parallel Multi-Scale Attention for Sequence to Sequence Learning](https://arxiv.org/abs/1911.09483)
@@ -32,8 +31,12 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 ### :point_right: Image to Text
 
 * [Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf)
-* [Image Captioning Using Keras(Blog)](https://towardsdatascience.com/image-captioning-with-keras-teaching-computers-to-describe-pictures-c88a46a311b8)
 * [Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/cvpr2015.pdf)
+
+
+## List of blogs
+* [Google Machine Translation Blog](https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html)
+* [Image Captioning Using Keras](https://towardsdatascience.com/image-captioning-with-keras-teaching-computers-to-describe-pictures-c88a46a311b8)
 
 
 ### Others
