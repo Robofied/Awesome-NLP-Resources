@@ -9,6 +9,7 @@ This repository contains landmark research papers and blogs in Natural Language 
 
 * [How to Read a Paper?](#How-to-Read-a-Paper?)
 * [List of blogs](#List-of-blogs)
+* [List of Reasearch Papers](#List-of-Reasearch-Papers)
 
 ## How to Read a Paper? :page_with_curl:
 Reading a paper is not the same as reading a blogpost or a novel. Here are a few handy resources to help you get started.
@@ -61,6 +62,8 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
 * [The Illustrated BERT](http://jalammar.github.io/illustrated-bert/) 
 * [A Visual Guide to Using BERT for the First Time](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/)
+
+### Back to Top[#Contents]
 
 ### Others
 
