@@ -8,7 +8,14 @@ This repository contains landmark research papers and blogs in Natural Language 
 
 * [How to Read a Paper?](#How-to-Read-a-Paper?)
 * [List of blogs](#List-of-blogs)
+    * [Machine Translation](#Machine-Translation)
+    * [Language Models](#Language-Models)
+    * [Image to Text](#Image-to-text)
+    * [Transformers](#Transformers)
 * [List of Reasearch Papers](#List-of-Reasearch-Papers)
+    * [Machine Translation](#Machine-Translation)
+    * [Image to Text](#Image-to-text)
+    * [Transformers](#Transformers)
 
 ## How to Read a Paper? :page_with_curl:
 Reading a paper is not the same as reading a blogpost or a novel. Here are a few handy resources to help you get started.
@@ -33,6 +40,11 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Convolutional Sequence to Sequence Learning](https://arxiv.org/abs/1705.03122)- Modified Attention model with convolutional layer
 
 
+### Language Models
+* [Scalable Hierarchical Distributed Language Model](https://www.cs.toronto.edu/~amnih/papers/hlbl_final.pdf)
+* [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf) - fastText(by Facebook AI Research) trained on billion of words for text classification. 
+
+
 ### Image to Text
 
 * [Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf)
@@ -50,11 +62,6 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Google Machine Translation Blog](https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html)
 * [Email AutoReply and Auto Suggestion](https://ai.googleblog.com/2018/05/smart-compose-using-neural-networks-to.html)
 * [Find Code errors and repair](https://medium.com/@martin.monperrus/sequence-to-sequence-learning-program-repair-e39dc5c0119b)
-
-
-### Language Models
-* [Scalable Hierarchical Distributed Language Model](https://www.cs.toronto.edu/~amnih/papers/hlbl_final.pdf)
-* [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf) - fastText(by Facebook AI Research) trained on billion of words for text classification. 
 
 
 
