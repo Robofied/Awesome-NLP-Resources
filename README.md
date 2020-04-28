@@ -25,12 +25,12 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 
 * [Sequence to Sequence Learning with Neural Network](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf) - LSTMN based approach for sequence problems.
 * [Learning Phase Representations using RNN Encoder-Decoder for statistical Machine Translation](https://arxiv.org/pdf/1406.1078.pdf)
-* [Attention Model(Neural Machine Translation By Jointly learning to Align and Translate)](https://arxiv.org/pdf/1409.0473.pdf) - Attention model architecture modified version for encoder decoder models (Don't confuse with <i>Attention is all you need paper</i> i.e, for transformers concept)
+* [Attention Model(Neural Machine Translation By Jointly learning to Align and Translate)](https://arxiv.org/pdf/1409.0473.pdf) - Attention model architecture modified version for encoder decoder models (Don't confuse with <i><b>Attention is all you need</b> paper</i> i.e, for transformers concept)
 * [Understanding Back-Translation at Scale](https://arxiv.org/pdf/1808.09381.pdf)
 * [MUSE: Parallel Multi-Scale Attention for Sequence to Sequence Learning](https://arxiv.org/abs/1911.09483)
 * [Scaling Neural Machine Translation](https://arxiv.org/abs/1806.00187)
 * [The Best of Both Worlds: Combining Recent Advances in Neural Machine Translation](https://arxiv.org/abs/1804.09849)
-* [Convolutional Sequence to Sequence Learning](https://arxiv.org/abs/1705.03122)
+* [Convolutional Sequence to Sequence Learning](https://arxiv.org/abs/1705.03122)- Modified Attention model with convolutional layer
 
 
 ### Image to Text
