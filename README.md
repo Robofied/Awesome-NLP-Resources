@@ -45,6 +45,10 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf) - fastText(by Facebook AI Research) trained on billion of words for text classification. 
 
 
+### Word Embeddings
+* [Distributed Representations of Sentences and Documents](https://cs.stanford.edu/~quocle/paragraph_vector.pdf) - Sentence/Document to vectors by Tomas Mikolov by Google
+* [Distributed Representations of Words and Phrases and their Compositionality](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)- WOrd2Vec representation by Tomas Mikolov(Google)
+
 ### Image to Text
 
 * [Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf)
