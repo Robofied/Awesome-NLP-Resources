@@ -41,7 +41,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 
 ### Transformers
 * [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
-* [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf) - Multimodal Recurrent Neural Network architecture for image description by [Andrej Kaparthy <img src="andreaj.svg"> ](http://karpathy.github.io/) and Le-Fei-fei
+* [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf) - Multimodal Recurrent Neural Network architecture for image description by [Andrej Kaparthy <img src="andreaj.svg" width="10" height="10"> ](http://karpathy.github.io/) and Le-Fei-fei
 
 
 ## List of blogs
