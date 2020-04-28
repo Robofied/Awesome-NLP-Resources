@@ -21,11 +21,11 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 
 ## List of Research Papers
 
-### :point_right: Machine Translation 
+### Machine Translation 
 
-* [Sequence to Sequence Learning with Neural Network](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf)
+* [Sequence to Sequence Learning with Neural Network](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf) - LSTMN based approach for sequence problems.
 * [Learning Phase Representations using RNN Encoder-Decoder for statistical Machine Translation](https://arxiv.org/pdf/1406.1078.pdf)
-* [Attention Model(Neural Machine Translation By Jointly learning to Align and Translate)](https://arxiv.org/pdf/1409.0473.pdf)
+* [Attention Model(Neural Machine Translation By Jointly learning to Align and Translate)](https://arxiv.org/pdf/1409.0473.pdf) - Attention model architecture modified version for encoder decoder models (Don't confuse with <i>Attention is all you need paper</i> i.e, for transformers concept)
 * [Understanding Back-Translation at Scale](https://arxiv.org/pdf/1808.09381.pdf)
 * [MUSE: Parallel Multi-Scale Attention for Sequence to Sequence Learning](https://arxiv.org/abs/1911.09483)
 * [Scaling Neural Machine Translation](https://arxiv.org/abs/1806.00187)
@@ -33,31 +33,31 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Convolutional Sequence to Sequence Learning](https://arxiv.org/abs/1705.03122)
 
 
-### :point_right: Image to Text
+### Image to Text
 
 * [Neural Image Caption Generation with Visual Attention](https://arxiv.org/pdf/1502.03044.pdf)
 * [Deep Visual-Semantic Alignments for Generating Image Descriptions](https://cs.stanford.edu/people/karpathy/cvpr2015.pdf)
 
 
-### :point_right: Transformers
+### Transformers
 * [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 * [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf)
 
 
 ## List of blogs
 
-### :point_right: Machine Translation
+### Machine Translation
 * [Google Machine Translation Blog](https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html)
 * [Email AutoReply and Auto Suggestion](https://ai.googleblog.com/2018/05/smart-compose-using-neural-networks-to.html)
 * [Find Code errors and repair](https://medium.com/@martin.monperrus/sequence-to-sequence-learning-program-repair-e39dc5c0119b)
 
 
 
-### :point_right: Image to Text
+### Image to Text
 * [Image Captioning Using Keras](https://towardsdatascience.com/image-captioning-with-keras-teaching-computers-to-describe-pictures-c88a46a311b8)
 
 
-### :point_right: Transformers
+### Transformers
 * [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
 * [The Illustrated BERT](http://jalammar.github.io/illustrated-bert/) 
 * [A Visual Guide to Using BERT for the First Time](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/)
