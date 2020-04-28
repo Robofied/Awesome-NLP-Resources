@@ -58,9 +58,9 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 
 
 ### Transformers
-* [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
-* [The Illustrated BERT](http://jalammar.github.io/illustrated-bert/) 
-* [A Visual Guide to Using BERT for the First Time](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/)
+* [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/) - Transformers Research paper core details explained by [Jalammar](http://jalammar.github.io/)
+* [The Illustrated BERT](http://jalammar.github.io/illustrated-bert/) - BERT is explained by [Jalammar](http://jalammar.github.io/)
+* [A Visual Guide to Using BERT for the First Time](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/) - Very beautifully :boom:explained BERT architecture with the help of visuals. 
 
 ### [Back to Top](#Contents)
 
