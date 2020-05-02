@@ -43,6 +43,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 ### Language Models
 * [Scalable Hierarchical Distributed Language Model](https://www.cs.toronto.edu/~amnih/papers/hlbl_final.pdf)
 * [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf) - fastText(by Facebook AI Research) trained on billion of words for text classification. 
+* [Language Models are Unsupervised Multitask Learners](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
 
 
 ### Word Embeddings
