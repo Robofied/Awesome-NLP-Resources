@@ -44,6 +44,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Scalable Hierarchical Distributed Language Model](https://www.cs.toronto.edu/~amnih/papers/hlbl_final.pdf)
 * [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf) - fastText(by Facebook AI Research) trained on billion of words for text classification. 
 * [Language Models are Unsupervised Multitask Learners](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
+* [Hierarchical Probabilistic Neural Network Language Model](https://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf) - Speed up training and recogintion(by 200) - Yoshua Bengio  
 
 
 ### Word Embeddings
