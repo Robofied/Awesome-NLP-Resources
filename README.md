@@ -48,6 +48,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 ### Word Embeddings
 * [Distributed Representations of Sentences and Documents](https://cs.stanford.edu/~quocle/paragraph_vector.pdf) - Sentence/Document to vectors by Tomas Mikolov by Google
 * [Distributed Representations of Words and Phrases and their Compositionality](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)- WOrd2Vec representation by Tomas Mikolov(Google)
+* [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf) - High quality vector representation from huge data sets by Tomas Mikolov(Google)
 
 ### Image to Text
 
