@@ -45,7 +45,6 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf) - fastText(by Facebook AI Research) trained on billion of words for text classification. 
 * [Language Models are Unsupervised Multitask Learners](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
 * [Hierarchical Probabilistic Neural Network Language Model](https://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf) - Speed up training and recogintion(by 200) - Yoshua Bengio  
-* [Misspelling Oblivious Word Embeddings](https://arxiv.org/abs/1905.09755)
 
 
 ### Word Embeddings
@@ -54,6 +53,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf) - High quality vector representation from huge data sets by Tomas Mikolov(Google)
 * [Deep contextualized word representations](https://arxiv.org/pdf/1802.05365.pdf)- based on deep birectional Language Model by Allen Institute for Artificial Intelligence
 * [Enriching Word Vectors with Subword Information](https://arxiv.org/pdf/1607.04606.pdf) - Handles morphology and generates vectors for words not present in training dataset by Facebook AI Research <img src="fb-icon.png" width="20" height="20">
+* [Misspelling Oblivious Word Embeddings](https://arxiv.org/abs/1905.09755)
 
 ### Image to Text
 
