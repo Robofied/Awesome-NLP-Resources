@@ -50,6 +50,7 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [Distributed Representations of Words and Phrases and their Compositionality](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf)- WOrd2Vec representation by Tomas Mikolov(Google)
 * [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf) - High quality vector representation from huge data sets by Tomas Mikolov(Google)
 * [Deep contextualized word representations](https://arxiv.org/pdf/1802.05365.pdf)- based on deep birectional Language Model by Allen Institute for Artificial Intelligence
+* [Enriching Word Vectors with Subword Information](https://arxiv.org/pdf/1607.04606.pdf) - Handles morphology and generates vectors for words not present in training dataset by Facebook AI Research <img src="fb-icon.png" width="20" height="20">
 
 ### Image to Text
 
