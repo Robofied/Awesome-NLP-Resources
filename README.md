@@ -85,8 +85,3 @@ Reading a paper is not the same as reading a blogpost or a novel. Here are a few
 * [A Visual Guide to Using BERT for the First Time :boom:](http://jalammar.github.io/a-visual-guide-to-using-bert-for-the-first-time/) - Very beautifully explained BERT architecture with the help of visuals. 
 
 ### [Back to Top](#Contents)
-
-
-## Credits
-* :man: [Akshat Gupta](https://github.com/Akshat4112/)
-* :woman: [Ridhima Garg](https://github.com/ridhimagarg)
