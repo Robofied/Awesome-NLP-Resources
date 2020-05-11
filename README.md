@@ -1,5 +1,5 @@
 ## Awesome NLP Resources
-[![Awesome](https://awesome.re/badge.svg)]()
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/Robofied/Awesome-NLP-Resources)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Akshat4112/Awesome-NLP-Resources/graphs/commit-activity)  [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) 
 
 This repository contains landmark research papers and blogs in Natural Language Processing that came out in this century.
