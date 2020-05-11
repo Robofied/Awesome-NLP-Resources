@@ -1,4 +1,4 @@
-## NLP Research Papers
+## Awesome NLP Resources
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Akshat4112/Awesome-NLP-Resources/graphs/commit-activity)  [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) 
 
